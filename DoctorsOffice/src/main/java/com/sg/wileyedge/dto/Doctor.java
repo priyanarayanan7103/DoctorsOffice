@@ -8,7 +8,17 @@ public class Doctor {
 
     private String doctorLName;
 
-    private String doctorSpecialty;
+    private String doctorSpecialtyId;
+
+    private String phoneNumber;
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
     public int getDoctorId() {
         return doctorId;
@@ -34,11 +44,11 @@ public class Doctor {
         this.doctorLName = doctorLName;
     }
 
-    public String getDoctorSpecialty() {
-        return doctorSpecialty;
+    public String getDoctorSpecialtyId() {
+        return doctorSpecialtyId;
     }
 
-    public void setDoctorSpecialty(String doctorSpecialty) {
-        this.doctorSpecialty = doctorSpecialty;
+    public void setDoctorSpecialtyId(String doctorSpecialtyId) {
+        this.doctorSpecialtyId = doctorSpecialtyId;
     }
 }

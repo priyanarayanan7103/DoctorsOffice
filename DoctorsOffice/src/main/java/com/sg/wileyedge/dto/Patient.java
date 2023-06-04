@@ -1,5 +1,7 @@
 package com.sg.wileyedge.dto;
 
+import java.time.LocalDate;
+
 public class Patient {
 
     private int patientId;
@@ -8,7 +10,37 @@ public class Patient {
 
     private String patientLName;
 
-    private String patientIllness;
+    private LocalDate dateOfBirth;
+
+    private String address;
+
+    private String phoneNumber;
+
+    private String email;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
     public int getPatientId() {
         return patientId;
@@ -34,11 +66,11 @@ public class Patient {
         this.patientLName = patientLName;
     }
 
-    public String getPatientIllness() {
-        return patientIllness;
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public void setPatientIllness(String patientIllness) {
-        this.patientIllness = patientIllness;
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 }

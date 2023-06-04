@@ -6,9 +6,17 @@ public class Appointment {
 
     private int appointmentId;
 
-    private String appointmentTitle;
-
     private LocalDateTime time;
+
+    private String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     private int doctorId;
 
@@ -20,14 +28,6 @@ public class Appointment {
 
     public void setAppointmentId(int appointmentId) {
         this.appointmentId = appointmentId;
-    }
-
-    public String getAppointmentTitle() {
-        return appointmentTitle;
-    }
-
-    public void setAppointmentTitle(String appointmentTitle) {
-        this.appointmentTitle = appointmentTitle;
     }
 
     public LocalDateTime getTime() {
