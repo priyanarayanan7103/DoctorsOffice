@@ -11,6 +11,8 @@ public class Doctor {
     private String doctorSpecialtyId;
 
     private String phoneNumber;
+    private String email;
+
 
     public String getPhoneNumber() {
         return phoneNumber;
@@ -50,5 +52,12 @@ public class Doctor {
 
     public void setDoctorSpecialtyId(String doctorSpecialtyId) {
         this.doctorSpecialtyId = doctorSpecialtyId;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    public String getEmail() {
+        return email;
     }
 }
