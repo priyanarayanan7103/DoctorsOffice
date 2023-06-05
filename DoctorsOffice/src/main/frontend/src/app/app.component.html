@@ -1,0 +1,17 @@
+<nav id="navMenu">
+  <ul>
+    <li><a class= "menuItem" href="/home">Home</a></li>
+    <li><a class= "menuItem" href="/appointment">Appointment</a></li>
+    <div class="topnav-right">
+        <li>
+          <div *ngIf="auth.isAuthenticated$ | async; else loggedOut">
+            <a class= "menuItem" (click)="auth.logout()">Logout</a>
+          </div>
+          <ng-template #loggedOut>
+            <a class= "menuItem" (click)="auth.loginWithRedirect()">Login</a>
+          </ng-template>
+        </li>
+      </div>
+  </ul>
+</nav>
+<router-outlet></router-outlet>
