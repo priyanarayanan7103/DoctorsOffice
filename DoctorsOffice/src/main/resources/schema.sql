@@ -23,7 +23,8 @@ CREATE TABLE Patient (
   patientLName VARCHAR(50) NOT NULL,
   dateOfBirth DATE NOT NULL,
   address VARCHAR(255) NOT NULL,
-  phone VARCHAR(255) NOT NULL
+  phoneNumber VARCHAR(255) NOT NULL,
+  email VARCHAR(255)
 );
 
 CREATE TABLE Appointment (
