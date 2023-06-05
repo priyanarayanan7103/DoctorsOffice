@@ -10,7 +10,7 @@ export class AppComponent implements OnInit{
   title = 'Doctor\'s Office';
 
   constructor(public auth: AuthService){}
+  
   ngOnInit(): void {
-    
   }
 }

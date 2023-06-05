@@ -10,6 +10,8 @@ import { AppointmentModule } from './appointment/appointment.module';
 // Import auth0 module from the SDK
 import { AuthModule } from '@auth0/auth0-angular';
 import { AuthButtonComponent } from './auth-button/auth-button.component';
+import { AboutModule } from './about/about.module';
+import { LocateModule } from './locate/locate.module';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { AuthButtonComponent } from './auth-button/auth-button.component';
     AppRoutingModule,
     HomeModule,
     AppointmentModule,
+    AboutModule,
+    LocateModule,
 
     // Copied from auth0 for login authentication
     AuthModule.forRoot({
