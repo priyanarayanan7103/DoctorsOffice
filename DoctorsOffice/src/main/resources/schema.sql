@@ -1,13 +1,15 @@
-DROP DATABASE IF EXISTS DoctorsOffice;
+-- DROP DATABASE IF EXISTS DoctorsOffice;
 
-CREATE DATABASE DoctorsOffice;
-USE DoctorsOffice;
+-- CREATE DATABASE DoctorsOffice;
+--USE DoctorsOffice;
 
+DROP TABLE IF EXISTS Specialty;
 CREATE TABLE Specialty (
   specialtyId INT PRIMARY KEY AUTO_INCREMENT,
   specialtyName VARCHAR(50) NOT NULL
 );
 
+DROP TABLE IF EXISTS Doctor;
 CREATE TABLE Doctor (
   doctorId INT PRIMARY KEY AUTO_INCREMENT,
   doctorFName VARCHAR(50) NOT NULL,
@@ -17,6 +19,7 @@ CREATE TABLE Doctor (
   FOREIGN KEY (doctorSpecialtyId) REFERENCES Specialty(specialtyId)
 );
 
+DROP TABLE IF EXISTS Patient;
 CREATE TABLE Patient (
   patientId INT PRIMARY KEY AUTO_INCREMENT,
   patientFName VARCHAR(50) NOT NULL,
@@ -27,6 +30,7 @@ CREATE TABLE Patient (
   email VARCHAR(255)
 );
 
+DROP TABLE IF EXISTS Appointment;
 CREATE TABLE Appointment (
   appointmentId INT PRIMARY KEY AUTO_INCREMENT,
   time TIMESTAMP,
