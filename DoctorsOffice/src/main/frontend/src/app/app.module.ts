@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 
 import { HomeModule } from './home/home.module';
 import { AppointmentModule } from './appointment/appointment.module';
+import { HttpClientModule } from '@angular/common/http';
+
 
 // Import auth0 module from the SDK
 import { AuthModule } from '@auth0/auth0-angular';
@@ -17,6 +19,7 @@ import { LocateModule } from './locate/locate.module';
   declarations: [
     AppComponent,
     AuthButtonComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -25,6 +28,7 @@ import { LocateModule } from './locate/locate.module';
     AppointmentModule,
     AboutModule,
     LocateModule,
+    HttpClientModule,
 
     // Copied from auth0 for login authentication
     AuthModule.forRoot({

@@ -12,7 +12,7 @@ public class DoctorMapper implements RowMapper<Doctor> {
         doctor.setDoctorId(rs.getInt("doctorId"));
         doctor.setDoctorFName(rs.getString("doctorFName"));
         doctor.setDoctorLName(rs.getString("doctorLName"));
-        doctor.setDoctorSpecialtyId(rs.getString("doctorSpecialty"));
+        doctor.setDoctorSpecialtyId(rs.getString("doctorSpecialtyId"));
         return doctor;
     }
 }
