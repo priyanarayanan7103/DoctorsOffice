@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { LocateRoutingModule } from './locate-routing.module';
 import { LocateHomeComponent } from './locate-home/locate-home.component';
 
+import { GoogleMapsModule } from '@angular/google-maps'
 
 @NgModule({
   declarations: [
@@ -11,7 +12,8 @@ import { LocateHomeComponent } from './locate-home/locate-home.component';
   ],
   imports: [
     CommonModule,
-    LocateRoutingModule
+    LocateRoutingModule,
+    GoogleMapsModule
   ]
 })
 export class LocateModule { }
