@@ -1,21 +1,32 @@
 <div class="mt-5">
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Phone Number</th>
-        <th>Specialty</th>
-      </tr>
-    </thead>
-    <tbody class="tbody">
-      <tr *ngFor="let doctor of doctorDetails">
-        <td>{{doctor.doctorFName}}</td>
-        <td>{{doctor.doctorLName}}</td>
-        <td>{{doctor.phoneNumber}}</td>
-        <td>{{doctor.doctorSpecialtyId}}</td>
-      </tr>
-    </tbody>
-  </table>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+  <div class="container">
+      <div class="row">
+          <div *ngFor="let doctor of doctorDetails" class="col-md-6 col-xl-3">
+              <div class="card m-b-30">
+                  <div class="card-body row">
+                      <div class="col-6">
+                          <a href=""><img src="https://www.bethesdaheadshots.com/wp-content/uploads/2021/06/NOUSHIN_4302p_pp-FIN2.jpg" alt="" class="img-fluid rounded-circle w-80"></a>
+                      </div>
+                      <div class="col-6 card-title align-self-center mb-0">
+                          <h5>{{doctor?.doctorFName}} {{doctor?.doctorLName}}</h5>
+                          <p class="m-0">{{doctor?.doctorSpecialtyId}}</p>
+                      </div>
+                  </div>
+                  <ul class="list-group list-group-flush">
+                      <li class="list-group-item"><i class="fa fa-envelope float-right"></i>Email : <a href="#">{{doctor?.email}} </a></li>
+                      <li class="list-group-item"><i class="fa fa-phone float-right"></i>Phone : {{doctor?.phoneNumber}}</li>
+                  </ul>
+                  <div class="card-body">
+                      <div class="float-right btn-group btn-group-sm">
+                          <a href="#" class="btn btn-primary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
+                          <a href="#" class="btn btn-secondary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-times"></i></a>
+                      </div>
+                      <a href="#" class="btn btn-secondary " data-placement="top" data-toggle="tooltip"> Book Now </a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
 </div>
 
