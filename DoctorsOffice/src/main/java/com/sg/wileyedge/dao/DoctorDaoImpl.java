@@ -17,8 +17,8 @@ public class DoctorDaoImpl implements DoctorDao{
 
     @Override
     public Doctor createNewDoctor(Doctor doctor) {
-        String sql = "INSERT INTO doctor (doctorId, doctorFName, doctorLName, doctorSpecialtyId, phoneNumber) VALUES (?,?,?,?,?)";
-        jdbcTemplate.update(sql, doctor.getDoctorId(), doctor.getDoctorFName(), doctor.getDoctorLName(), doctor.getDoctorSpecialtyId(), doctor.getPhoneNumber() );
+        String sql = "INSERT INTO doctor (doctorId, doctorFName, doctorLName, doctorSpecialtyId, phoneNumber, email) VALUES (?,?,?,?,?,?)";
+        jdbcTemplate.update(sql, doctor.getDoctorId(), doctor.getDoctorFName(), doctor.getDoctorLName(), doctor.getDoctorSpecialtyId(), doctor.getPhoneNumber(), doctor.getEmail() );
         return doctor;
     }
 
@@ -36,8 +36,8 @@ public class DoctorDaoImpl implements DoctorDao{
 
     @Override
     public void updateDoctor(Doctor doctor) {
-        String sql = "UPDATE doctor SET doctorFName = ?, doctorLName = ?, doctorSpecialtyId = ?, phoneNumber = ? WHERE doctorId = ?";
-        jdbcTemplate.update(sql, doctor.getDoctorFName(), doctor.getDoctorLName(), doctor.getDoctorSpecialtyId(), doctor.getPhoneNumber(), doctor.getDoctorId());
+        String sql = "UPDATE doctor SET doctorFName = ?, doctorLName = ?, doctorSpecialtyId = ?, phoneNumber = ?, email = ? WHERE doctorId = ?";
+        jdbcTemplate.update(sql, doctor.getDoctorFName(), doctor.getDoctorLName(), doctor.getDoctorSpecialtyId(), doctor.getPhoneNumber(), doctor.getEmail(), doctor.getDoctorId());
     }
 
     @Override
