@@ -1,6 +1,6 @@
---DROP DATABASE IF EXISTS DoctorsOffice;
+-- DROP DATABASE IF EXISTS DoctorsOffice;
 
---CREATE DATABASE DoctorsOffice;
+-- CREATE DATABASE DoctorsOffice;
 --USE DoctorsOffice;
 
 DROP TABLE IF EXISTS Specialty;
@@ -16,8 +16,6 @@ CREATE TABLE Doctor (
   doctorLName VARCHAR(50) NOT NULL,
   doctorSpecialtyId INT NOT NULL,
   phoneNumber VARCHAR(20) NOT NULL,
-  email VARCHAR(255) NOT NULL, -- Modified to include email
-
   FOREIGN KEY (doctorSpecialtyId) REFERENCES Specialty(specialtyId)
 );
 

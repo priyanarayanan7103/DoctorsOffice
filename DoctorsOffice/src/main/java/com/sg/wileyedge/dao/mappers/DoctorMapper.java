@@ -13,6 +13,10 @@ public class DoctorMapper implements RowMapper<Doctor> {
         doctor.setDoctorFName(rs.getString("doctorFName"));
         doctor.setDoctorLName(rs.getString("doctorLName"));
         doctor.setDoctorSpecialtyId(rs.getString("doctorSpecialtyId"));
+
+        doctor.setPhoneNumber(rs.getString("phoneNumber"));
+        doctor.setEmail((rs.getString("email")));
+
         return doctor;
     }
 }

@@ -1,17 +1,16 @@
--- Insert specialties
 INSERT INTO Specialty (specialtyName)
 VALUES ('Cardiology'), ('Dermatology'), ('Endocrinology'), ('Gastroenterology');
 
--- Insert doctors
-INSERT INTO Doctor (doctorFName, doctorLName, doctorSpecialtyId, phoneNumber, email)
+-- Generate fake data for Doctor table
+INSERT INTO Doctor (doctorFName, doctorLName, doctorSpecialtyId, phoneNumber)
 VALUES
-  ('John', 'Smith', 1, '555-1234', 'john@example.com'),
-  ('Jane', 'Doe', 2, '555-5678', 'jane@example.com'),
-  ('David', 'Johnson', 3, '555-9876', 'david@example.com'),
-  ('Sarah', 'Wilson', 1, '555-4321', 'sarah@example.com'),
-  ('Robert', 'Anderson', 2, '555-8765', 'robert@example.com');
+  ('John', 'Smith', 1, '555-1234'),
+  ('Jane', 'Doe', 2, '555-5678'),
+  ('David', 'Johnson', 3, '555-9876'),
+  ('Sarah', 'Wilson', 1, '555-4321'),
+  ('Robert', 'Anderson', 2, '555-8765');
 
--- Insert patients
+-- Generate fake data for Patient table
 INSERT INTO Patient (patientFName, patientLName, dateOfBirth, address, phoneNumber, email)
 VALUES
   ('Emily', 'Brown', '1990-05-15', '123 Main St', '555-1111', 'emily@example.com'),
@@ -20,7 +19,7 @@ VALUES
   ('Olivia', 'Taylor', '1980-07-20', '321 Elm St', '555-4444', 'olivia@example.com'),
   ('Matthew', 'Wilson', '1992-02-12', '654 Oak St', '555-5555', 'matthew@example.com');
 
--- Insert appointments
+-- Generate fake data for Appointment table
 INSERT INTO Appointment (time, doctorId, patientId, status)
 VALUES
   ('2023-06-03 10:00:00', 1, 1, 'Scheduled'),

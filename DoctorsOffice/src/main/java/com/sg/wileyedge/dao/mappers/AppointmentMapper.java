@@ -8,11 +8,11 @@ public class AppointmentMapper implements RowMapper<Appointment> {
     @Override
     public Appointment mapRow(ResultSet rs, int rowNum) throws SQLException {
         Appointment appointment = new Appointment();
-        appointment.setAppointmentId(rs.getInt("appointment_id"));
-        appointment.setTime(rs.getTimestamp("appointment_time").toLocalDateTime());
+        appointment.setAppointmentId(rs.getInt("appointmentId"));
+        appointment.setTime(rs.getTimestamp("time").toLocalDateTime());
         appointment.setStatus(rs.getString("status"));
-        appointment.setDoctorId(rs.getInt("doctor_id"));
-        appointment.setPatientId(rs.getInt("patient_id"));
+        appointment.setDoctorId(rs.getInt("doctorId"));
+        appointment.setPatientId(rs.getInt("patientId"));
         return appointment;
 
     }
