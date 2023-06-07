@@ -9,12 +9,13 @@
         <div class="card m-b-30">
           <div class="card-body row">
             <div class="col-6">
-              <a href=""
-                ><img
+              <a href="">
+                <img
                   src="https://t4.ftcdn.net/jpg/04/26/99/95/360_F_426999565_AJdlhzyu9f3kL5T6cXlZJfkg4AoCDc6E.jpg"
                   alt=""
                   class="img-fluid rounded-circle w-80"
-              /></a>
+                />
+              </a>
             </div>
             <div class="col-6 card-title align-self-center mb-0">
               <h5>{{ doctor?.doctorFName }} {{ doctor?.doctorLName }}</h5>
@@ -39,7 +40,8 @@
                 data-placement="top"
                 data-toggle="tooltip"
                 data-original-title="Edit"
-                ><i class="fa fa-pencil"></i>
+              >
+                <i class="fa fa-pencil"></i>
               </a>
               <a
                 href="#"
@@ -47,90 +49,119 @@
                 data-placement="top"
                 data-toggle="tooltip"
                 data-original-title="Delete"
-                ><i class="fa fa-times"></i
+              >
+                <i class="fa fa-times"></i
               ></a>
             </div>
             <a
               class="btn btn-secondary"
               data-placement="top"
               data-toggle="tooltip"
-              (click)="toggleForm()"
+              (click)="showFormForDoctor(doctor)"
+              *ngIf="
+                !selectedDoctor || (selectedDoctor && selectedDoctor !== doctor)
+              "
             >
               Book Now
             </a>
           </div>
         </div>
-      </div>
 
-      <div *ngIf="showForm">
-        <form (ngSubmit)="register(patientForm)" #patientForm="ngForm">
-          <div>
-            <label for="patientFName">First Name:</label>
-            <input
-              type="text"
-              id="patientFName"
-              name="patientFName"
-              ngModel
-              required
-            />
-          </div>
+        <div class="col-md-6 col-xl-9" *ngIf="selectedDoctor === doctor">
+          <form (ngSubmit)="register(patientForm)" #patientForm="ngForm">
+            <div>
+              <label for="doctorId"></label>
+              <input
+                type="hidden"
+                id="doctorId"
+                name="doctorId"
+                value="{{selectedDoctor?.doctorId}}"
+              />
+            </div>
+            <div>
+              <label for="patientId"></label>
+              <input type="hidden" id="patientId" name="patientId" value="7" />
+            </div>
+            <div>
+              <label for="status"></label>
+              <input
+                type="hidden"
+                id="status"
+                name="status"
+                value="Scheduled"
+              />
+            </div>
 
-          <div>
-            <label for="patientLName">Last Name:</label>
-            <input
-              type="text"
-              id="patientLName"
-              name="patientLName"
-              ngModel
-              required
-            />
-          </div>
+            <div>
+              <label for="patientFName">First name: </label>
+              <input
+                type="text"
+                id="patientFName"
+                name="patientFName"
+                ngModel
+                required
+              />
+            </div>
 
-          <div>
-            <label for="dateOfBirth">Date of Birth:</label>
-            <input
-              type="date"
-              id="dateOfBirth"
-              name="dateOfBirth"
-              ngModel
-              required
-            />
-          </div>
+            <div>
+              <label for="patientLName">Last Name:</label>
+              <input
+                type="text"
+                id="patientLName"
+                name="patientLName"
+                ngModel
+                required
+              />
+            </div>
 
-          <div>
-            <label for="address">Address:</label>
-            <textarea id="address" name="address" ngModel required></textarea>
-          </div>
+            <div>
+              <label for="dateOfBirth">Date of Birth:</label>
+              <input
+                type="date"
+                id="dateOfBirth"
+                name="dateOfBirth"
+                ngModel
+                required
+              />
+            </div>
 
-          <div>
-            <label for="phoneNumber">Phone Number:</label>
-            <input
-              type="tel"
-              id="phoneNumber"
-              name="phoneNumber"
-              ngModel
-              required
-            />
-          </div>
+            <div>
+              <label for="address">Address:</label>
+              <textarea id="address" name="address" ngModel required></textarea>
+            </div>
 
-          <div>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" ngModel required />
-          </div>
+            <div>
+              <label for="phoneNumber">Phone Number:</label>
+              <input
+                type="tel"
+                id="phoneNumber"
+                name="phoneNumber"
+                ngModel
+                required
+              />
+            </div>
 
-          <div>
-            <label for="appointmentTime">Appointment Time:</label>
-            <input
-              type="time"
-              id="appointmentTime"
-              name="appointmentTime"
-              ngModel
-              required
-            />
-          </div>
+            <div>
+              <label for="email">Email:</label>
+              <input type="email" id="email" name="email" ngModel required />
+            </div>
 
-          <button type="submit" [disabled]="!patientForm.valid">Submit</button>
-        </form>
+            <div>
+              <label for="time">Appointment Time:</label>
+              <input
+                type="datetime-local"
+                id="time"
+                name="time"
+                ngModel
+                required
+              />
+            </div>
+
+            <button type="submit" [disabled]="!patientForm.valid">
+              Submit
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   </div>
