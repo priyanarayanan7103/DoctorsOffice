@@ -12,4 +12,15 @@ export class appointmentService {
   public getDoctors() {
     return this.http.get(this.API + '/doctor/doctors');
   }
+  public getPatients() {
+    return this.http.get(this.API + '/patient/patients');
+  }
+
+  public addPatient(patientData: any) {
+    return this.http.post(this.API + '/patient/add', patientData);
+  }
+
+  public addAppointment(appointmentData: any) {
+    return this.http.post(this.API + '/appointment/add', appointmentData);
+  }
 }
