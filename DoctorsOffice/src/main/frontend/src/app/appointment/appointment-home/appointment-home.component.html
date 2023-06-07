@@ -69,29 +69,7 @@
 
         <div class="col-md-6 col-xl-9" *ngIf="selectedDoctor === doctor">
           <form (ngSubmit)="register(patientForm)" #patientForm="ngForm">
-            <div>
-              <label for="doctorId"></label>
-              <input
-                type="hidden"
-                id="doctorId"
-                name="doctorId"
-                value="{{selectedDoctor?.doctorId}}"
-              />
-            </div>
-            <div>
-              <label for="patientId"></label>
-              <input type="hidden" id="patientId" name="patientId" value="7" />
-            </div>
-            <div>
-              <label for="status"></label>
-              <input
-                type="hidden"
-                id="status"
-                name="status"
-                value="Scheduled"
-              />
-            </div>
-
+            
             <div>
               <label for="patientFName">First name: </label>
               <input
