@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { appointmentService } from './appointment.service';
+import { NgForm } from '@angular/forms';
 
 
 
@@ -12,11 +13,53 @@ import { appointmentService } from './appointment.service';
 export class AppointmentHomeComponent {
 
   constructor(private appointmentService: appointmentService) {
-    this.getDoctors();
+    this.getDoctorDetails();
   }
+  patientFName!: string;
+  patientLName!: string;
+  dateOfBirth!: string;
+  address!: string;
+  phoneNumber!: string;
+  email!: string;
+  appointmentTime!: string;
+
+  showForm: boolean = false;
+
+  toggleForm() {
+    this.showForm = !this.showForm;
+  }
+
+
+  register(registerForm: NgForm) {
+    this.appointmentService.addPatient(registerForm.value).subscribe(
+      (resp) => {
+        console.log(resp);
+        registerForm.reset();
+        this.getPatientDetails();
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+
+
+  patientDetails = null as any;
+  getPatientDetails() {
+    this.appointmentService.getPatients().subscribe(
+      (resp) => {
+        console.log(resp);
+        this.patientDetails = resp;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+
   doctorDetails = null as any;
 
-  getDoctors() {
+  getDoctorDetails() {
     this.appointmentService.getDoctors().subscribe(
       (resp) => {
         console.log(resp);

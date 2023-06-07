@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { AppointmentRoutingModule } from './appointment-routing.module';
 import { AppointmentHomeComponent } from './appointment-home/appointment-home.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { AppointmentHomeComponent } from './appointment-home/appointment-home.co
   ],
   imports: [
     CommonModule,
-    AppointmentRoutingModule
+    AppointmentRoutingModule,
+    FormsModule
   ]
 })
 export class AppointmentModule { }

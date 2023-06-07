@@ -30,7 +30,7 @@ public class PatientServiceImpl implements PatientService{
         } catch (DataAccessException e) {
             Patient patient = new Patient();
             patient.setPatientFName("Patient Not Found");
-            patient.setPatientLName("Student Not Found");
+            patient.setPatientLName("Patient Not Found");
             return patient;
         }
     }

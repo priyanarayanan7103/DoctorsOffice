@@ -1,32 +1,137 @@
 <div class="mt-5">
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+  <link
+    href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+    rel="stylesheet"
+  />
   <div class="container">
-      <div class="row">
-          <div *ngFor="let doctor of doctorDetails" class="col-md-6 col-xl-3">
-              <div class="card m-b-30">
-                  <div class="card-body row">
-                      <div class="col-6">
-                          <a href=""><img src="https://t4.ftcdn.net/jpg/04/26/99/95/360_F_426999565_AJdlhzyu9f3kL5T6cXlZJfkg4AoCDc6E.jpg" alt="" class="img-fluid rounded-circle w-80"></a>
-                      </div>
-                      <div class="col-6 card-title align-self-center mb-0">
-                          <h5>{{doctor?.doctorFName}} {{doctor?.doctorLName}}</h5>
-                          <p class="m-0">{{doctor?.doctorSpecialtyId}}</p>
-                      </div>
-                  </div>
-                  <ul class="list-group list-group-flush">
-                      <li class="list-group-item"><i class="fa fa-envelope float-right"></i>Email : <a href="#">{{doctor?.email}} </a></li>
-                      <li class="list-group-item"><i class="fa fa-phone float-right"></i>Phone : {{doctor?.phoneNumber}}</li>
-                  </ul>
-                  <div class="card-body">
-                      <div class="float-right btn-group btn-group-sm">
-                          <a href="#" class="btn btn-primary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
-                          <a href="#" class="btn btn-secondary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-times"></i></a>
-                      </div>
-                      <a href="#" class="btn btn-secondary " data-placement="top" data-toggle="tooltip"> Book Now </a>
-                  </div>
-              </div>
+    <div class="row">
+      <div *ngFor="let doctor of doctorDetails" class="col-md-6 col-xl-3">
+        <div class="card m-b-30">
+          <div class="card-body row">
+            <div class="col-6">
+              <a href=""
+                ><img
+                  src="https://t4.ftcdn.net/jpg/04/26/99/95/360_F_426999565_AJdlhzyu9f3kL5T6cXlZJfkg4AoCDc6E.jpg"
+                  alt=""
+                  class="img-fluid rounded-circle w-80"
+              /></a>
+            </div>
+            <div class="col-6 card-title align-self-center mb-0">
+              <h5>{{ doctor?.doctorFName }} {{ doctor?.doctorLName }}</h5>
+              <p class="m-0">{{ doctor?.doctorSpecialtyId }}</p>
+            </div>
           </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <i class="fa fa-envelope float-right"></i>Email :
+              <a href="#">{{ doctor?.email }} </a>
+            </li>
+            <li class="list-group-item">
+              <i class="fa fa-phone float-right"></i>Phone :
+              {{ doctor?.phoneNumber }}
+            </li>
+          </ul>
+          <div class="card-body">
+            <div class="float-right btn-group btn-group-sm">
+              <a
+                href="#"
+                class="btn btn-primary tooltips"
+                data-placement="top"
+                data-toggle="tooltip"
+                data-original-title="Edit"
+                ><i class="fa fa-pencil"></i>
+              </a>
+              <a
+                href="#"
+                class="btn btn-secondary tooltips"
+                data-placement="top"
+                data-toggle="tooltip"
+                data-original-title="Delete"
+                ><i class="fa fa-times"></i
+              ></a>
+            </div>
+            <a
+              class="btn btn-secondary"
+              data-placement="top"
+              data-toggle="tooltip"
+              (click)="toggleForm()"
+            >
+              Book Now
+            </a>
+          </div>
+        </div>
       </div>
+
+      <div *ngIf="showForm">
+        <form (ngSubmit)="register(patientForm)" #patientForm="ngForm">
+          <div>
+            <label for="patientFName">First Name:</label>
+            <input
+              type="text"
+              id="patientFName"
+              name="patientFName"
+              ngModel
+              required
+            />
+          </div>
+
+          <div>
+            <label for="patientLName">Last Name:</label>
+            <input
+              type="text"
+              id="patientLName"
+              name="patientLName"
+              ngModel
+              required
+            />
+          </div>
+
+          <div>
+            <label for="dateOfBirth">Date of Birth:</label>
+            <input
+              type="date"
+              id="dateOfBirth"
+              name="dateOfBirth"
+              ngModel
+              required
+            />
+          </div>
+
+          <div>
+            <label for="address">Address:</label>
+            <textarea id="address" name="address" ngModel required></textarea>
+          </div>
+
+          <div>
+            <label for="phoneNumber">Phone Number:</label>
+            <input
+              type="tel"
+              id="phoneNumber"
+              name="phoneNumber"
+              ngModel
+              required
+            />
+          </div>
+
+          <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" ngModel required />
+          </div>
+
+          <div>
+            <label for="appointmentTime">Appointment Time:</label>
+            <input
+              type="time"
+              id="appointmentTime"
+              name="appointmentTime"
+              ngModel
+              required
+            />
+          </div>
+
+          <button type="submit" [disabled]="!patientForm.valid">Submit</button>
+        </form>
+      </div>
+    </div>
   </div>
 </div>
-
