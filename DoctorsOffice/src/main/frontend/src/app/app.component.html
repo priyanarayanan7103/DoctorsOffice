@@ -1,109 +1,31 @@
-<nav id="navMenu">
-  <ul>
-    <li><a class="menuItem" href="/home">Home</a></li>
-    <li><a class="menuItem" href="/appointment">Appointment</a></li>
-    <li><a class="menuItem" href="/about">About Us</a></li>
-    <li><a class="menuItem" href="/locate">Locate Us</a></li>
-    <div class="topnav-right">
-      <li>
-        <div *ngIf="auth.isAuthenticated$ | async; else loggedOut">
-          <a class="menuItem" (click)="auth.logout()">Logout</a>
-        </div>
-        <ng-template #loggedOut>
-          <a class="menuItem" (click)="auth.loginWithRedirect()">Login</a>
-        </ng-template>
-      </li>
-    </div>
-  </ul>
-</nav>
-
-<!--
-<header class="">
-  <div class="container1200">
-    <div class="row">
-      <div class="col-md-3">
-        <a href="/edge/" class="logo"></a>
+<div class="container d-flex align-items-center">
+  <h1 class="logo me-auto"><a href="/home">Wiley Clinic</a></h1>
+  <!-- Uncomment below if you prefer to use an image logo -->
+  <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+  
+  <!-- .navbar -->
+  <nav id="navbar" class="navbar">
+    <ul>
+      <li><a class="nav-link scrollto" href="/appointment">Appointment</a></li>
+      <li><a class="nav-link scrollto" href="/about">About Us</a></li>
+      <li><a class="nav-link scrollto" href="/locate">Locate U</a></li>
+      <li><a class="nav-link scrollto" href="#team">Team</a></li>
+      <div *ngIf="auth.isAuthenticated$ | async; else loggedOut">
+        <li>
+          <a class="getstarted scrollto" (click)="auth.logout()">Logout</a>
+        </li>
       </div>
-
-      <ul class="col-md-9 nav-col">
-        <nav>
-          <ul>
-            <li class="sub-list-trigger">
-              <a href="/edge/about/">About</a>
-              <ul class="sub-list">
-                <li><a href="/edge/diversity/">Diversity</a></li>
-              </ul>
-            </li>
-            <li class=""><a href="/edge/careers/">View jobs</a></li>
-            <li class=""><a href="/edge/media/">Media</a></li>
-            <li class=""><a href="/edge/contact/">Contact</a></li>
-            <li class="sub-list-trigger">
-              <a href="/edge/for-organizations/" class="menu-btn purple"
-                >For Organizations</a
-              >
-              <ul class="sub-list purple">
-                <li>
-                  <a href="/edge/for-organizations/emerging-talent/"
-                    >Emerging Talent</a
-                  >
-                </li>
-                <li><a href="/edge/for-organizations/reskill/">Reskill</a></li>
-                <li><a href="/edge/for-organizations/academy/">Academy</a></li>
-                <li>
-                  <a href="/edge/for-organizations/partnerships/"
-                    >Partnerships</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="/edge/for-organizations/columbia-engineering-partnership/"
-                    >Columbia Partnership</a
-                  >
-                </li>
-              </ul>
-            </li>
-            <li class="sub-list-trigger">
-              <a href="/edge/for-graduates/" class="menu-btn green"
-                >For Graduates</a
-              >
-              <ul class="sub-list green">
-                <li>
-                  <a href="/edge/for-graduates/your-journey-our-people/"
-                    >Your Journey</a
-                  >
-                </li>
-                <li>
-                  <a href="/edge/for-graduates/career-pathways/"
-                    >Career Pathways</a
-                  >
-                </li>
-                <li><a href="https://edgejobs.wiley.com/">Search jobs</a></li>
-                <li>
-                  <a href="/edge/for-graduates/frequently-asked-questions/"
-                    >FAQs</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="/edge/for-graduates/columbia-engineering-certificates/"
-                    >Columbia</a
-                  >
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </nav>
-      </ul>
-
-      <div class="menu-trigger">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
-  </div>
-</header>
--->
-
+      <ng-template #loggedOut>
+        <li>
+          <a class="getstarted scrollto" (click)="auth.loginWithRedirect()"
+            >Login</a
+          >
+        </li>
+      </ng-template>
+    </ul>
+    <i class="bi bi-list mobile-nav-toggle"></i>
+  </nav>
+  <!-- .navbar -->
+</div>
 
 <router-outlet></router-outlet>
