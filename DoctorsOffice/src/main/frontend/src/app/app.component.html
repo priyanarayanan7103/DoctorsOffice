@@ -1,21 +1,31 @@
-<nav id="navMenu">
-  <ul>
-    <li><a class= "menuItem" href="/home">Home</a></li>
-    <li><a class= "menuItem" href="/appointment">Appointment</a></li>
-    <li><a class= "menuItem" href="/about">About Us</a></li>
-    <li><a class= "menuItem" href="/locate">Locate Us</a></li>
-    <div class="topnav-right">
+<div class="container d-flex align-items-center">
+  <h1 class="logo me-auto"><a href="/home">Wiley Clinic</a></h1>
+  <!-- Uncomment below if you prefer to use an image logo -->
+  <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+  
+  <!-- .navbar -->
+  <nav id="navbar" class="navbar">
+    <ul>
+      <li><a class="nav-link scrollto" href="/appointment">Appointment</a></li>
+      <li><a class="nav-link scrollto" href="/about">About Us</a></li>
+      <li><a class="nav-link scrollto" href="/locate">Locate U</a></li>
+      <li><a class="nav-link scrollto" href="#team">Team</a></li>
+      <div *ngIf="auth.isAuthenticated$ | async; else loggedOut">
         <li>
-          <div *ngIf="auth.isAuthenticated$ | async; else loggedOut">
-            <a class= "menuItem" (click)="auth.logout()">Logout</a>
-          </div>
-          <ng-template #loggedOut>
-            <a class= "menuItem" (click)="auth.loginWithRedirect()">Login</a>
-          </ng-template>
+          <a class="getstarted scrollto" (click)="auth.logout()">Logout</a>
         </li>
       </div>
-  </ul>
-</nav>
-
+      <ng-template #loggedOut>
+        <li>
+          <a class="getstarted scrollto" (click)="auth.loginWithRedirect()"
+            >Login</a
+          >
+        </li>
+      </ng-template>
+    </ul>
+    <i class="bi bi-list mobile-nav-toggle"></i>
+  </nav>
+  <!-- .navbar -->
+</div>
 
 <router-outlet></router-outlet>
