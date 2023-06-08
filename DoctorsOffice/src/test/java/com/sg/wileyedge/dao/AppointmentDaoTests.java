@@ -27,6 +27,11 @@ public class AppointmentDaoTests {
     @Autowired
     private AppointmentDao appointmentDao;
 
+    public void AppointmentDaoImplTest(JdbcTemplate jdbcTemplate){
+        this.jdbcTemplate = jdbcTemplate;
+        appointmentDao = new AppointmentDaoImpl(jdbcTemplate);
+    }
+
     @Test
     @DisplayName("Create New Appointment")
     public void createNewAppointmentTest() {
