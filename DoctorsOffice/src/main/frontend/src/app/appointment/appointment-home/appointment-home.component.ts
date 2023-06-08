@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { appointmentService } from './appointment.service';
 import { NgForm } from '@angular/forms';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-appointment-home',
@@ -8,8 +9,10 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./appointment-home.component.css']
 })
 export class AppointmentHomeComponent implements OnInit {
-  constructor(private appointmentService: appointmentService) {}
-
+  closeResult: String ='close';
+  
+  constructor(private appointmentService: appointmentService, private modalService: NgbModal) {}
+ 
   patientFName!: string;
   patientLName!: string;
   dateOfBirth!: string;
@@ -84,4 +87,29 @@ export class AppointmentHomeComponent implements OnInit {
     this.getPatientDetails();
     this.getDoctorDetails();
   }
+  selectedDoctor: any; // Declare a variable to store the selected doctor
+
+  open(content: any, doctor: any) {
+    this.selectedDoctor = doctor; // Store the selected doctor
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
+      (result) => {
+        this.closeResult = `Closed with: ${result}`;
+      },
+      (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      },
+    );
+  }
+  
+
+	private getDismissReason(reason: any): string {
+		if (reason === ModalDismissReasons.ESC) {
+			return 'by pressing ESC';
+		} else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+			return 'by clicking on a backdrop';
+		} else {
+			return `with: ${reason}`;
+		}
+	}
+  
 }
