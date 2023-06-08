@@ -72,4 +72,16 @@ public class PatientServiceImpl implements PatientService{
     public void deletePatientById(int id) {
         patientDao.deletePatient(id);
     }
+
+    @Override
+    public Patient getPatientIDByEmail(String email) {
+        try {
+            return patientDao.findPatientIDByEmail(email);
+        } catch (DataAccessException e) {
+            Patient patient = new Patient();
+            patient.setPatientFName("Patient Not Found");
+            patient.setPatientLName("Patient Not Found");
+            return patient;
+        }
+    }
 }

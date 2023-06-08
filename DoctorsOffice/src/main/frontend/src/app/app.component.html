@@ -21,7 +21,9 @@
       </div>
       <ng-template #loggedOut>
         <li>
-          <a class="getstarted scrollto" (click)="auth.loginWithRedirect()">Login</a>
+          <a class="getstarted scrollto" (click)="auth.loginWithRedirect({
+            appState: { target: '/appointment' }
+          })">Login</a>
         </li>
       </ng-template>
     </ul>

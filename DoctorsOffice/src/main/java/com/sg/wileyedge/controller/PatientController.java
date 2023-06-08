@@ -39,4 +39,9 @@ public class PatientController {
     public void deletePatient(@PathVariable int id) {
         patientServiceImpl.deletePatientById(id);
     }
+
+    @GetMapping("/profile/{email}")
+    public Patient getPatientIDByEmail(@PathVariable String email) {
+        return patientServiceImpl.getPatientIDByEmail(email);
+    }
 }

@@ -39,7 +39,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
       domain: 'dev-tsr0hs58jbrfnpmv.us.auth0.com',
       clientId: 'hEP6cN8aMnICcOowCjUENAYwv1Vq1MJH',
       authorizationParams: {
-        redirect_uri: window.location.origin
+        redirect_uri: window.location.origin + '/appointment'
       }
     }),
       NgbModule,
