@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,12 +8,12 @@ import { Injectable } from '@angular/core';
 export class appointmentService {
   constructor(private http: HttpClient) { }
 
-  API = 'http://localhost:8090';
+  API = 'http://localhost:8080';
 
   public getDoctors() {
     return this.http.get(this.API + '/doctor/doctors');
   }
-  public getDoctorSpeciality(doctorID: number){
+  public getDoctorSpeciality(doctorID: number): Observable<any> {
     return this.http.get(this.API + '/doctor/speciality/' + doctorID);
   }
   

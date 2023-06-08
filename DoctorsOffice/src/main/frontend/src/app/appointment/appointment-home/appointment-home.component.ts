@@ -1,20 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { appointmentService } from './appointment.service';
 import { NgForm } from '@angular/forms';
-
-
 
 @Component({
   selector: 'app-appointment-home',
   templateUrl: './appointment-home.component.html',
   styleUrls: ['./appointment-home.component.css']
 })
+export class AppointmentHomeComponent implements OnInit {
+  constructor(private appointmentService: appointmentService) {}
 
-export class AppointmentHomeComponent  {
-
-  constructor(private appointmentService: appointmentService) {
-    this.getDoctorDetails();
-  }
   patientFName!: string;
   patientLName!: string;
   dateOfBirth!: string;
@@ -29,7 +24,6 @@ export class AppointmentHomeComponent  {
     this.showForm = !this.showForm;
   }
 
-
   register(registerForm: NgForm) {
     this.appointmentService.addPatient(registerForm.value).subscribe(
       (resp) => {
@@ -43,8 +37,10 @@ export class AppointmentHomeComponent  {
     );
   }
 
+  patientDetails: any;
+  doctorDetails: any;
+  specialties: { [doctorId: number]: string } = {};
 
-  patientDetails = null as any;
   getPatientDetails() {
     this.appointmentService.getPatients().subscribe(
       (resp) => {
@@ -57,13 +53,14 @@ export class AppointmentHomeComponent  {
     );
   }
 
-  doctorDetails = null as any;
-
   getDoctorDetails() {
     this.appointmentService.getDoctors().subscribe(
       (resp) => {
-        //console.log(resp);
         this.doctorDetails = resp;
+        // Fetch specialties for all doctors
+        this.doctorDetails.forEach((doctor: any) => {
+          this.getDoctorSpeciality(doctor.doctorId);
+        });
       },
       (err) => {
         console.log(err);
@@ -71,18 +68,20 @@ export class AppointmentHomeComponent  {
     );
   }
 
-  getDoctorSpeciality(doctorId: number): string {
-    let specialty: string = "test";
+  getDoctorSpeciality(doctorId: number): void {
     this.appointmentService.getDoctorSpeciality(doctorId).subscribe(
       (resp) => {
         console.log(resp);
-         specialty = resp as string;
+        this.specialties[doctorId] = JSON.stringify(resp);
       },
       (err) => {
         console.log(err);
       }
     );
-    return specialty;
+  }
+
+  ngOnInit() {
+    this.getPatientDetails();
+    this.getDoctorDetails();
   }
 }
-
