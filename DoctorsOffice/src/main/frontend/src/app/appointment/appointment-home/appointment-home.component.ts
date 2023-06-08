@@ -28,6 +28,11 @@ export class AppointmentHomeComponent implements OnInit {
     this.showForm = !this.showForm;
   }
 
+  selectedDoctor: any = null;
+
+  showFormForDoctor(doctor: any) {
+    this.selectedDoctor = doctor;
+  }
 
   register(registerForm: NgForm) {
     this.appointmentService.addPatient(registerForm.value).subscribe(
@@ -40,8 +45,7 @@ export class AppointmentHomeComponent implements OnInit {
       }
     );
     const appointmentData = {
-      doctorId : this.
-      .doctorId,
+      doctorId : this.selectedDoctor.doctorId,
       patientId: 2,
       time: "2023-06-03T10:00:00",
       status: "Scheduled"
@@ -61,6 +65,18 @@ export class AppointmentHomeComponent implements OnInit {
     );
   }
 
+  appointmentDetails = null as any;
+  getAppointmentDetails() {
+    this.appointmentService.getAppointments().subscribe(
+      (resp) => {
+        console.log(resp);
+        this.appointmentDetails = resp;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
   patientDetails: any;
   doctorDetails: any;
   specialties: { [doctorId: number]: string } = {};
