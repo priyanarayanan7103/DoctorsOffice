@@ -75,15 +75,6 @@
   <div class="modal-body">
     <!-- Form -->
     <form (ngSubmit)="register(patientForm)" #patientForm="ngForm">
-      <div>
-        <label for="patientFName">First Name:</label>
-        <input type="text" id="patientFName" name="patientFName" class="form-control" ngModel required placeholder="Enter your first name" />
-      </div>
-
-      <div>
-        <label for="patientLName">Last Name:</label>
-        <input type="text" id="patientLName" name="patientLName" class="form-control" ngModel required placeholder="Enter your last name" />
-      </div>
 
       <div>
         <label for="dateOfBirth">Date of Birth:</label>
@@ -100,10 +91,6 @@
         <input type="tel" id="phoneNumber" name="phoneNumber" class="form-control" ngModel required placeholder="Enter your phone number" />
       </div>
 
-      <div>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" class="form-control" ngModel required placeholder="Enter your email address" />
-      </div>
 
       <div>
         <label for="appointmentDateTime">Appointment Date and Time:</label>

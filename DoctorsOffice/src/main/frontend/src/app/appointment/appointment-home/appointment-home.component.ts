@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { appointmentService } from './appointment.service';
 import { NgForm } from '@angular/forms';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ProfileService } from 'src/app/profile/profile-home/profile.service';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-appointment-home',
@@ -11,7 +13,7 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class AppointmentHomeComponent implements OnInit {
   closeResult: String ='close';
 
-  constructor(private appointmentService: appointmentService, private modalService: NgbModal) {}
+  constructor(private appointmentService: appointmentService, private modalService: NgbModal, private profileService: ProfileService, public auth: AuthService) {}
 
   patientFName!: string;
   patientLName!: string;
@@ -24,9 +26,19 @@ export class AppointmentHomeComponent implements OnInit {
   status!: string;
   time!: Date;
   patientId!: number;
-
   showForm: boolean = false;
+  profileJson: string = "";
 
+  ngOnInit(): void{
+    this.auth.user$.subscribe(
+      (profile: any) => {
+        this.profileJson = JSON.stringify(profile, null, 2);
+        this.profileService.setProfileData(this.profileJson);
+      }
+    );
+    this.getPatientDetails();
+    this.getDoctorDetails();
+  }
 
   //toggle form
   toggleForm() {
@@ -40,7 +52,19 @@ export class AppointmentHomeComponent implements OnInit {
   }
   //register patient and create appointment
   register(registerForm: NgForm) {
-    this.appointmentService.addPatient(registerForm.value).subscribe(
+
+    console.log(this.profileJson);
+    const profileData = JSON.parse(this.profileJson);
+
+    const patientData = {
+      patientFName: profileData.given_name,
+      patientLName: profileData.family_name,
+      email: profileData.email,
+      phoneNumber: registerForm.value.phoneNumber,
+      dateOfBirth: registerForm.value.dateOfBirth,
+      address: registerForm.value.address,
+    }
+    this.appointmentService.addPatient(patientData).subscribe(
       (resp) => {
         console.log(resp);
         this.getPatientDetails();
@@ -56,6 +80,7 @@ export class AppointmentHomeComponent implements OnInit {
       time: registerForm.value.appointmentDateTime,
       status: "Scheduled"
     }
+
     console.log(appointmentData)
 
     this.appointmentService.addAppointment(appointmentData).subscribe(
@@ -83,10 +108,10 @@ export class AppointmentHomeComponent implements OnInit {
       }
     );
   }
+
   patientDetails: any;
   doctorDetails: any;
   specialties: { [doctorId: number]: string } = {};
-
 
   getPatientDetails() {
     this.appointmentService.getPatients().subscribe(
@@ -127,10 +152,7 @@ export class AppointmentHomeComponent implements OnInit {
     );
   }
 
-  ngOnInit() {
-    this.getPatientDetails();
-    this.getDoctorDetails();
-  }
+
 
 
   open(content: any, doctor: any) {
