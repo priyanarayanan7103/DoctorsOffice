@@ -16,5 +16,5 @@ public interface PatientService {
 
     void deletePatientById(int id);
 
-    Patient getPatientIDByEmail(String email);
+    Patient getPatientByEmail(String email);
 }

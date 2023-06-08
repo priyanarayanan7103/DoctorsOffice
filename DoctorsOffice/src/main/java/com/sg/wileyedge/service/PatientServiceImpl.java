@@ -74,7 +74,7 @@ public class PatientServiceImpl implements PatientService{
     }
 
     @Override
-    public Patient getPatientIDByEmail(String email) {
+    public Patient getPatientByEmail(String email) {
         try {
             return patientDao.findPatientIDByEmail(email);
         } catch (DataAccessException e) {
