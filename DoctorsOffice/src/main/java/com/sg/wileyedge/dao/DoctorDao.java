@@ -1,6 +1,7 @@
 package com.sg.wileyedge.dao;
 
 import com.sg.wileyedge.dto.Doctor;
+import com.sg.wileyedge.dto.Specialty;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ public interface DoctorDao {
     void deleteDoctor(int id);
 
     String findDoctorSpecialityById(int id);
+    List<Specialty> getAllSpecialities();
 }
 
 
