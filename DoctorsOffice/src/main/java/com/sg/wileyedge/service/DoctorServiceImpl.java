@@ -49,7 +49,7 @@ public class DoctorServiceImpl implements DoctorService{
             doctor.setDoctorFName("First Name blank, doctor not added");
         }
         if (doctor.getDoctorLName().isBlank()) {
-            doctor.setDoctorLName("Last Name blank, teacher not added");
+            doctor.setDoctorLName("Last Name blank, doctor not added");
         }
         return doctorDao.createNewDoctor(doctor);
     }
