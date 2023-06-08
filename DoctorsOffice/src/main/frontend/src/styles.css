@@ -5,12 +5,18 @@ body{
     margin-top:20px;
     background: #f5f5f5;
 }
+.doctor-image {
+    width: 140px; /* Adjust the width as needed */
+    height: 140px; /* Adjust the height as needed */
+    object-fit: cover; /* Maintain aspect ratio and crop if necessary */
+  }
 .card {
     border: none;
     -webkit-box-shadow: 0 1px 2px 0 rgba(0,0,0,.05);
     box-shadow: 0 1px 2px 0 rgba(0,0,0,.05);
     margin-bottom: 30px;
 }
+
 .btn {
     color: white;
     background-color: green;
