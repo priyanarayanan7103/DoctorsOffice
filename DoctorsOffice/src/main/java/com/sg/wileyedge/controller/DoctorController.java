@@ -22,6 +22,11 @@ public class DoctorController {
         return doctors;
     }
 
+    @GetMapping("speciality/{id}")
+    public String getDoctorSpecialityById(@PathVariable int id) {
+        return doctorServiceImpl.getDoctorSpecialityById(id);
+
+    }
     @GetMapping("/{id}")
     public Doctor getDoctorById(@PathVariable int id) {
         Doctor doctor = doctorServiceImpl.getDoctorById(id);

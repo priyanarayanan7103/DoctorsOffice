@@ -17,6 +17,7 @@ CREATE TABLE Doctor (
   doctorSpecialtyId INT NOT NULL,
   phoneNumber VARCHAR(20) NOT NULL,
   email VARCHAR(255) NOT NULL, -- Modified to include email
+  imageURL VARCHAR(255) NOT NULL,
 
   FOREIGN KEY (doctorSpecialtyId) REFERENCES Specialty(specialtyId)
 );

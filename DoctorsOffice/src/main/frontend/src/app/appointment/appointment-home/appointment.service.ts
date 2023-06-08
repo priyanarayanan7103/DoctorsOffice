@@ -7,11 +7,15 @@ import { Injectable } from '@angular/core';
 export class appointmentService {
   constructor(private http: HttpClient) { }
 
-  API = 'http://localhost:8080';
+  API = 'http://localhost:8090';
 
   public getDoctors() {
     return this.http.get(this.API + '/doctor/doctors');
   }
+  public getDoctorSpeciality(doctorID: number){
+    return this.http.get(this.API + '/doctor/speciality/' + doctorID);
+  }
+  
   public getPatients() {
     return this.http.get(this.API + '/patient/patients');
   }

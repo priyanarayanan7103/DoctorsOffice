@@ -10,7 +10,7 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./appointment-home.component.css']
 })
 
-export class AppointmentHomeComponent {
+export class AppointmentHomeComponent  {
 
   constructor(private appointmentService: appointmentService) {
     this.getDoctorDetails();
@@ -62,13 +62,27 @@ export class AppointmentHomeComponent {
   getDoctorDetails() {
     this.appointmentService.getDoctors().subscribe(
       (resp) => {
-        console.log(resp);
+        //console.log(resp);
         this.doctorDetails = resp;
       },
       (err) => {
         console.log(err);
       }
     );
+  }
+
+  getDoctorSpeciality(doctorId: number): string {
+    let specialty: string = "test";
+    this.appointmentService.getDoctorSpeciality(doctorId).subscribe(
+      (resp) => {
+        console.log(resp);
+         specialty = resp as string;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+    return specialty;
   }
 }
 
