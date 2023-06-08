@@ -10,9 +10,9 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class AppointmentHomeComponent implements OnInit {
   closeResult: String ='close';
-  
+
   constructor(private appointmentService: appointmentService, private modalService: NgbModal) {}
- 
+
   patientFName!: string;
   patientLName!: string;
   dateOfBirth!: string;
@@ -27,6 +27,8 @@ export class AppointmentHomeComponent implements OnInit {
 
   showForm: boolean = false;
 
+
+  //toggle form
   toggleForm() {
     this.showForm = !this.showForm;
   }
@@ -36,7 +38,7 @@ export class AppointmentHomeComponent implements OnInit {
   showFormForDoctor(doctor: any) {
     this.selectedDoctor = doctor;
   }
-
+  //register patient and create appointment
   register(registerForm: NgForm) {
     this.appointmentService.addPatient(registerForm.value).subscribe(
       (resp) => {
@@ -47,10 +49,11 @@ export class AppointmentHomeComponent implements OnInit {
         console.log(err);
       }
     );
+
     const appointmentData = {
       doctorId : this.selectedDoctor.doctorId,
       patientId: 2,
-      time: "2023-06-03T10:00:00",
+      time: registerForm.value.appointmentDateTime,
       status: "Scheduled"
     }
     console.log(appointmentData)
@@ -141,7 +144,7 @@ export class AppointmentHomeComponent implements OnInit {
       },
     );
   }
-  
+
 
 	private getDismissReason(reason: any): string {
 		if (reason === ModalDismissReasons.ESC) {
@@ -152,6 +155,6 @@ export class AppointmentHomeComponent implements OnInit {
 			return `with: ${reason}`;
 		}
 	}
-  
+
 }
 
