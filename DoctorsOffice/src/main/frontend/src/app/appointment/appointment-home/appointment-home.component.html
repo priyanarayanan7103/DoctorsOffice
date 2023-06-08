@@ -1,12 +1,12 @@
 <main id="main">
   <section id="services" class="services">
       <div class="container">
-  
+
         <div class="section-title">
           <h2>See a Doctor Today</h2>
           <p>Whether you’re a current Wiley Clinic patient or seeing one of our doctors for the first time, we make it easy to make an appointment. </p>
         </div>
-  
+
         <div class="container">
           <div class="row">
             <!-- Iterate over each doctor -->
@@ -17,9 +17,9 @@
                   <div class="col-6">
                     <a href="">
                       <img src="{{doctor?.imageURL}}" alt="" class="img-fluid rounded-circle doctor-image" />
-        
-        
-        
+
+
+
                     </a>
                   </div>
                   <!-- Doctor information -->
@@ -28,7 +28,7 @@
                     <p class="m-0">{{ specialties[doctor.doctorId] }}</p>
                   </div>
                 </div>
-        
+
                 <!-- Doctor contact details -->
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item">
@@ -53,13 +53,13 @@
                   <button class="btn btn-sm btn-outline-primary" data-placement="top" data-toggle="tooltip" (click)="open(content, doctor)">
                     Book
                   </button>
-        
+
                 </div>
               </div>
             </div>
           </div>
         </div>
-  
+
       </div>
     </section><!-- End Services Section -->
 </main>
@@ -75,15 +75,6 @@
   <div class="modal-body">
     <!-- Form -->
     <form (ngSubmit)="register(patientForm)" #patientForm="ngForm">
-      <div>
-        <label for="patientFName">First Name:</label>
-        <input type="text" id="patientFName" name="patientFName" class="form-control" ngModel required placeholder="Enter your first name" />
-      </div>
-
-      <div>
-        <label for="patientLName">Last Name:</label>
-        <input type="text" id="patientLName" name="patientLName" class="form-control" ngModel required placeholder="Enter your last name" />
-      </div>
 
       <div>
         <label for="dateOfBirth">Date of Birth:</label>
@@ -100,10 +91,6 @@
         <input type="tel" id="phoneNumber" name="phoneNumber" class="form-control" ngModel required placeholder="Enter your phone number" />
       </div>
 
-      <div>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" class="form-control" ngModel required placeholder="Enter your email address" />
-      </div>
 
       <div>
         <label for="appointmentDateTime">Appointment Date and Time:</label>

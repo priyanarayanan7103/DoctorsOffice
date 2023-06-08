@@ -10,6 +10,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
   declarations: [
     AppointmentHomeComponent
   ],
+
   imports: [
     CommonModule,
     AppointmentRoutingModule,
