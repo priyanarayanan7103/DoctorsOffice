@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 
 import { HomeModule } from './home/home.module';
 import { AppointmentModule } from './appointment/appointment.module';
+import { ProfileModule } from './profile/profile.module';
 import { HttpClientModule } from '@angular/common/http';
 
 
@@ -14,6 +15,7 @@ import { AuthModule } from '@auth0/auth0-angular';
 import { AuthButtonComponent } from './auth-button/auth-button.component';
 import { AboutModule } from './about/about.module';
 import { LocateModule } from './locate/locate.module';
+
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { LocateModule } from './locate/locate.module';
     AboutModule,
     LocateModule,
     HttpClientModule,
+    ProfileModule,
 
     // Copied from auth0 for login authentication
     AuthModule.forRoot({
