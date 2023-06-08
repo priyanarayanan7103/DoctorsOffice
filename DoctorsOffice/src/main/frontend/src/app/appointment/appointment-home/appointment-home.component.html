@@ -1,3 +1,4 @@
+
 <div class="container">
   <div class="row">
     <!-- Iterate over each doctor -->
@@ -8,6 +9,9 @@
           <div class="col-6">
             <a href="">
               <img src="{{doctor?.imageURL}}" alt="" class="img-fluid rounded-circle doctor-image" />
+
+
+
             </a>
           </div>
           <!-- Doctor information -->
@@ -16,6 +20,7 @@
             <p class="m-0">{{ specialties[doctor.doctorId] }}</p>
           </div>
         </div>
+
         <!-- Doctor contact details -->
         <ul class="list-group list-group-flush">
           <li class="list-group-item">
@@ -40,6 +45,7 @@
           <button class="btn btn-sm btn-outline-primary" data-placement="top" data-toggle="tooltip" (click)="open(content, doctor)">
             Book
           </button>
+
         </div>
       </div>
     </div>
