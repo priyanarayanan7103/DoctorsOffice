@@ -875,6 +875,18 @@ body {
   .services .iconbox-orange:hover .icon path {
     fill: #ffa76e;
   }
+
+  .services .iconbox-green i {
+    color: #08e638;
+  }
+
+  .services .iconbox-green:hover .icon i {
+    color: #fff;
+  }
+  
+  .services .iconbox-green:hover .icon path {
+    fill: #08e638;
+  }
   
   .services .iconbox-pink i {
     color: #e80368;
