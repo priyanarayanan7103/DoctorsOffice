@@ -52,3 +52,4 @@ yarn-error.log
 /libpeerconnection.log
 testem.log
 /typings
+DoctorsOffice/src/main/resources/application.properties
