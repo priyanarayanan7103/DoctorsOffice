@@ -1,3 +1,45 @@
-
-
-<google-map></google-map>
+<main id="main">
+    <section id="contact" class="contact">
+        <div class="container">
+  
+          <div class="section-title">
+            <h2>Contact</h2>
+            <p>We're here to help!
+                Don’t hesitate to get in touch so we can answer your question or concern in a timely manner.</p>
+          </div>
+  
+          <div class="row">
+            <div class="d-flex align-items-stretch">
+              <div class="info">
+                <div class="address">
+                  <i class="bi bi-geo-alt"></i>
+                  <h4>Location:</h4>
+                  <p>111 River St, Hoboken, NJ 07030</p>
+                </div>
+  
+                <div class="email">
+                  <i class="bi bi-envelope"></i>
+                  <h4>Email:</h4>
+                  <p>info@wileyedge.com</p>
+                </div>
+  
+                <div class="phone">
+                  <i class="bi bi-phone"></i>
+                  <h4>Call:</h4>
+                  <p>+1 855 209 3722</p>
+                </div>
+  
+                 <google-map [options]="mapOptions" width="100%">
+                    <map-marker *ngFor="let spot of spots" 
+                                [position]="{ lat: spot.lat, lng: spot.lng }" 
+                                [options]="markerOptions"></map-marker>
+                 </google-map>
+              </div>
+  
+            </div>
+  
+          </div>
+  
+        </div>
+      </section><!-- End Contact Section -->
+</main>
