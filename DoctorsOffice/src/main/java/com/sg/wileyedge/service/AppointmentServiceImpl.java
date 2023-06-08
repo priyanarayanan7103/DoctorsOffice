@@ -37,10 +37,10 @@ public class AppointmentServiceImpl implements AppointmentService{
 
     @Override
     public Appointment addNewAppointment(Appointment appointment) {
-        if(appointment.getAppointmentId() == 0){
-            appointment.setStatus("Appointment not added.");
-            return appointment;
-        }
+//        if(appointment.getAppointmentId() == 0){
+//            appointment.setStatus("Appointment not added.");
+//            return appointment;
+//        }
         return appointmentDao.createNewAppointment(appointment);
     }
 

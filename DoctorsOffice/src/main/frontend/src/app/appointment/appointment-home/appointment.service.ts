@@ -20,6 +20,9 @@ export class appointmentService {
     return this.http.post(this.API + '/patient/add', patientData);
   }
 
+  public getAppointments() {
+    return this.http.get(this.API + '/appointment/appointments');
+  }
   public addAppointment(appointmentData: any) {
     return this.http.post(this.API + '/appointment/add', appointmentData);
   }
