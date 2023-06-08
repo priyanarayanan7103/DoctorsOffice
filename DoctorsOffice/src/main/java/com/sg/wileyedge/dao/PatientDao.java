@@ -15,4 +15,6 @@ public interface PatientDao {
     void updatePatient(Patient patient);
 
     void deletePatient(int id);
+
+    Patient findPatientIDByEmail(String email);
 }

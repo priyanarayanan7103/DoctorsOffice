@@ -46,4 +46,10 @@ public class PatientDaoImpl implements PatientDao {
         String sql = "DELETE FROM patient WHERE patientId = ?";
         jdbcTemplate.update(sql, id);
     }
+
+    @Override
+    public Patient findPatientIDByEmail(String email) {
+        String sql = "SELECT * FROM patient WHERE email = ? LIMIT 1";
+        return jdbcTemplate.queryForObject(sql, new PatientMapper(), email);
+    }
 }
