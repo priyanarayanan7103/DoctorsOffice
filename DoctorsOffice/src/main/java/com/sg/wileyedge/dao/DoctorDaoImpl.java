@@ -2,7 +2,9 @@ package com.sg.wileyedge.dao;
 
 import com.sg.wileyedge.dao.mappers.DoctorMapper;
 import com.sg.wileyedge.dto.Doctor;
+import com.sg.wileyedge.dto.Specialty;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -59,6 +61,23 @@ public class DoctorDaoImpl implements DoctorDao{
 
         return specialty;
     }
+
+    @Override
+    public List<Specialty> getAllSpecialities() {
+        String sql = "SELECT * FROM Specialty";
+
+        return jdbcTemplate.query(sql, specialtyRowMapper);
+    }
+
+    private RowMapper<Specialty> specialtyRowMapper = (rs, rowNum) -> {
+        Specialty specialty = new Specialty();
+        specialty.setSpecialtyId(rs.getInt("specialtyId"));
+        specialty.setSpecialtyName(rs.getString("specialtyName"));
+        return specialty;
+    };
+
+
+
 
 
 }
