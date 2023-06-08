@@ -16,6 +16,7 @@ public class DoctorMapper implements RowMapper<Doctor> {
 
         doctor.setPhoneNumber(rs.getString("phoneNumber"));
         doctor.setEmail((rs.getString("email")));
+        doctor.setImageURL((rs.getString("imageURL")));
 
         return doctor;
     }

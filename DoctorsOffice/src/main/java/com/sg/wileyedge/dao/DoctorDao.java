@@ -15,4 +15,8 @@ public interface DoctorDao {
     void updateDoctor(Doctor doctor);
 
     void deleteDoctor(int id);
+
+    String findDoctorSpecialityById(int id);
 }
+
+

@@ -35,6 +35,14 @@ public class DoctorServiceImpl implements DoctorService{
         }
     }
 
+    public String getDoctorSpecialityById(int id) {
+        try {
+            return doctorDao.findDoctorSpecialityById(id);
+        } catch (DataAccessException e) {
+            return "";
+        }
+    }
+
     @Override
     public Doctor addNewDoctor(Doctor doctor) {
         if (doctor.getDoctorFName().isBlank()) {
