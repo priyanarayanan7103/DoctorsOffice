@@ -36,6 +36,7 @@ export class AppointmentHomeComponent implements OnInit {
     );
     this.getPatientDetails();
     this.getDoctorDetails();
+    this.getAppointmentDetails();
   }
 
   //toggle form
@@ -51,9 +52,7 @@ export class AppointmentHomeComponent implements OnInit {
   //register patient and create appointment
   register(registerForm: NgForm) {
 
-    console.log(this.profileJson);
     const profileData = JSON.parse(this.profileJson);
-
     const patientData = {
       patientFName: profileData.given_name,
       patientLName: profileData.family_name,
@@ -62,6 +61,7 @@ export class AppointmentHomeComponent implements OnInit {
       dateOfBirth: registerForm.value.dateOfBirth,
       address: registerForm.value.address,
     }
+
     this.appointmentService.addPatient(patientData).subscribe(
       (resp) => {
         console.log(resp);
@@ -78,8 +78,6 @@ export class AppointmentHomeComponent implements OnInit {
       time: registerForm.value.appointmentDateTime,
       status: "Scheduled"
     }
-
-    console.log(appointmentData)
 
     this.appointmentService.addAppointment(appointmentData).subscribe(
       (resp) => {

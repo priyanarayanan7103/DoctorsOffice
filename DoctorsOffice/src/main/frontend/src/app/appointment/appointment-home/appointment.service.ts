@@ -16,7 +16,7 @@ export class appointmentService {
   public getDoctorSpeciality(doctorID: number): Observable<any> {
     return this.http.get(this.API + '/doctor/speciality/' + doctorID);
   }
-  
+
   public getPatients() {
     return this.http.get(this.API + '/patient/patients');
   }
@@ -26,6 +26,9 @@ export class appointmentService {
   }
 
   public getAppointments() {
+    return this.http.get(this.API + '/appointment/appointments');
+  }
+  public getAppointmentsByEmail() {
     return this.http.get(this.API + '/appointment/appointments');
   }
   public addAppointment(appointmentData: any) {
