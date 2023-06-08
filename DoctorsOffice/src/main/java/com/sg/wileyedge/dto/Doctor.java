@@ -12,6 +12,7 @@ public class Doctor {
 
     private String phoneNumber;
     private String email;
+    private String imageURL;
 
 
     public String getPhoneNumber() {
@@ -59,5 +60,11 @@ public class Doctor {
     }
     public String getEmail() {
         return email;
+    }
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
+    public String getImageURL() {
+        return imageURL;
     }
 }

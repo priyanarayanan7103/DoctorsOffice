@@ -17,8 +17,8 @@ public class DoctorDaoImpl implements DoctorDao{
 
     @Override
     public Doctor createNewDoctor(Doctor doctor) {
-        String sql = "INSERT INTO doctor (doctorId, doctorFName, doctorLName, doctorSpecialtyId, phoneNumber, email) VALUES (?,?,?,?,?,?)";
-        jdbcTemplate.update(sql, doctor.getDoctorId(), doctor.getDoctorFName(), doctor.getDoctorLName(), doctor.getDoctorSpecialtyId(), doctor.getPhoneNumber(), doctor.getEmail() );
+        String sql = "INSERT INTO doctor (doctorId, doctorFName, doctorLName, doctorSpecialtyId, phoneNumber, email, imageURL) VALUES (?,?,?,?,?,?,?)";
+        jdbcTemplate.update(sql, doctor.getDoctorId(), doctor.getDoctorFName(), doctor.getDoctorLName(), doctor.getDoctorSpecialtyId(), doctor.getPhoneNumber(), doctor.getEmail(), doctor.getImageURL());
         return doctor;
     }
 
@@ -36,8 +36,8 @@ public class DoctorDaoImpl implements DoctorDao{
 
     @Override
     public void updateDoctor(Doctor doctor) {
-        String sql = "UPDATE doctor SET doctorFName = ?, doctorLName = ?, doctorSpecialtyId = ?, phoneNumber = ?, email = ? WHERE doctorId = ?";
-        jdbcTemplate.update(sql, doctor.getDoctorFName(), doctor.getDoctorLName(), doctor.getDoctorSpecialtyId(), doctor.getPhoneNumber(), doctor.getEmail(), doctor.getDoctorId());
+        String sql = "UPDATE doctor SET doctorFName = ?, doctorLName = ?, doctorSpecialtyId = ?, phoneNumber = ?, email = ?, imageURL = ? WHERE doctorId = ?";
+        jdbcTemplate.update(sql, doctor.getDoctorFName(), doctor.getDoctorLName(), doctor.getDoctorSpecialtyId(), doctor.getPhoneNumber(), doctor.getEmail(),doctor.getImageURL(), doctor.getDoctorId());
     }
 
     @Override
@@ -45,4 +45,20 @@ public class DoctorDaoImpl implements DoctorDao{
         String sql = "DELETE FROM doctor WHERE doctorId = ?";
         jdbcTemplate.update(sql, id);
     }
+
+    @Override
+    public String findDoctorSpecialityById(int id) {
+        String sql = "SELECT * FROM Doctor WHERE doctorId = ?";
+        Doctor temp = jdbcTemplate.queryForObject(sql, new Object[]{id}, new DoctorMapper());
+
+        String specialtyIdStr = temp.getDoctorSpecialtyId();
+        int specialtyId = Integer.parseInt(specialtyIdStr);
+
+        sql = "SELECT specialtyName FROM Specialty WHERE specialtyId = ?";
+        String specialty = jdbcTemplate.queryForObject(sql, new Object[]{specialtyId}, String.class);
+
+        return specialty;
+    }
+
+
 }

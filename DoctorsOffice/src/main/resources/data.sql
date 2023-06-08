@@ -3,13 +3,13 @@ INSERT INTO Specialty (specialtyName)
 VALUES ('Cardiology'), ('Dermatology'), ('Endocrinology'), ('Gastroenterology');
 
 -- Insert doctors
-INSERT INTO Doctor (doctorFName, doctorLName, doctorSpecialtyId, phoneNumber, email)
+INSERT INTO Doctor (doctorFName, doctorLName, doctorSpecialtyId, phoneNumber, email, imageURL)
 VALUES
-  ('John', 'Smith', 1, '555-1234', 'john@example.com'),
-  ('Jane', 'Doe', 2, '555-5678', 'jane@example.com'),
-  ('David', 'Johnson', 3, '555-9876', 'david@example.com'),
-  ('Sarah', 'Wilson', 1, '555-4321', 'sarah@example.com'),
-  ('Robert', 'Anderson', 2, '555-8765', 'robert@example.com');
+  ('John', 'Smith', 1, '555-1234', 'john@example.com', "https://purepng.com/public/uploads/large/purepng.com-doctorsdoctorsdoctors-and-nursesa-qualified-practitioner-of-medicine-aclinicianmedical-practitionermale-doctor-1421526856801kbvy1.png"),
+  ('Jane', 'Doe', 2, '555-5678', 'jane@example.com',"https://purepng.com/public/uploads/large/purepng.com-doctordoctorsdoctors-and-nursesclinicianmedical-practitionernotepadfemale-1421526857330hticw.png"),
+  ('David', 'Johnson', 3, '555-9876', 'david@example.com',"https://purepng.com/public/uploads/large/purepng.com-doctorsdoctorsdoctors-and-nursesa-qualified-practitioner-of-medicine-aclinicianmedical-practitionermale-doctor-1421526856715fcree.png"),
+  ('Sarah', 'Wilson', 1, '555-4321', 'sarah@example.com',"https://purepng.com/public/uploads/large/purepng.com-doctordoctorsdoctors-and-nursesclinicianmedical-practitionernotepadfemale-1421526857295nzsqt.png"),
+  ('Roxanne', 'Anderson', 2, '555-8765', 'roxanne@example.com',"https://purepng.com/public/uploads/large/purepng.com-doctordoctorsdoctors-and-nursesclinicianmedical-practitionernotepadfemale-1421526857248uragw.png");
 
 -- Insert patients
 INSERT INTO Patient (patientFName, patientLName, dateOfBirth, address, phoneNumber, email)
