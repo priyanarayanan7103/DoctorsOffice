@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { appointmentService } from './appointment.service';
 import { NgForm } from '@angular/forms';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ProfileService } from 'src/app/profile/profile-home/profile.service';
 import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
@@ -13,7 +12,7 @@ import { AuthService } from '@auth0/auth0-angular';
 export class AppointmentHomeComponent implements OnInit {
   closeResult: String ='close';
 
-  constructor(private appointmentService: appointmentService, private modalService: NgbModal, private profileService: ProfileService, public auth: AuthService) {}
+  constructor(private appointmentService: appointmentService, private modalService: NgbModal, public auth: AuthService) {}
 
   patientFName!: string;
   patientLName!: string;
@@ -33,7 +32,6 @@ export class AppointmentHomeComponent implements OnInit {
     this.auth.user$.subscribe(
       (profile: any) => {
         this.profileJson = JSON.stringify(profile, null, 2);
-        this.profileService.setProfileData(this.profileJson);
       }
     );
     this.getPatientDetails();
