@@ -3,6 +3,7 @@ package com.sg.wileyedge.controller;
 import com.sg.wileyedge.dto.Doctor;
 import com.sg.wileyedge.service.DoctorServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,10 +24,13 @@ public class DoctorController {
     }
 
     @GetMapping("speciality/{id}")
-    public String getDoctorSpecialityById(@PathVariable int id) {
-        return doctorServiceImpl.getDoctorSpecialityById(id);
-
+    public ResponseEntity<Object> getDoctorSpecialityById(@PathVariable int id) {
+        String speciality = doctorServiceImpl.getDoctorSpecialityById(id);
+        String json = "{\"speciality\": \"" + speciality + "\"}";
+        return ResponseEntity.ok().body(json);
     }
+    
+    
     @GetMapping("/{id}")
     public Doctor getDoctorById(@PathVariable int id) {
         Doctor doctor = doctorServiceImpl.getDoctorById(id);

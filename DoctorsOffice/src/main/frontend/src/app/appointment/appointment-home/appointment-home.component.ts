@@ -72,7 +72,7 @@ export class AppointmentHomeComponent implements OnInit {
     this.appointmentService.getDoctorSpeciality(doctorId).subscribe(
       (resp) => {
         console.log(resp);
-        this.specialties[doctorId] = JSON.stringify(resp);
+        this.specialties[doctorId] = resp.speciality;
       },
       (err) => {
         console.log(err);
