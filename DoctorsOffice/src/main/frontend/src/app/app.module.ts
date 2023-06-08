@@ -15,6 +15,7 @@ import { AuthModule } from '@auth0/auth0-angular';
 import { AuthButtonComponent } from './auth-button/auth-button.component';
 import { AboutModule } from './about/about.module';
 import { LocateModule } from './locate/locate.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { LocateModule } from './locate/locate.module';
         redirect_uri: window.location.origin
       }
     }),
+      NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

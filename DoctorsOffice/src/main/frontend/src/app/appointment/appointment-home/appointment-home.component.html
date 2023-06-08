@@ -1,173 +1,103 @@
-<div class="mt-5">
-  <link
-    href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
-    rel="stylesheet"
-  />
-  <div class="container">
-    <div class="row">
-      <div *ngFor="let doctor of doctorDetails" class="col-md-6 col-xl-3">
-        <div class="card m-b-30">
-          <div class="card-body row">
-            <div class="col-6">
-              <a href=""
-                ><img
-                  src= {{doctor?.imageURL}}
 
-                  alt=""
-                  class="img-fluid rounded-circle w-80"
-                />
-              </a>
-            </div>
-            <div class="col-6 card-title align-self-center mb-0">
-              <h5>{{ doctor?.doctorFName }} {{ doctor?.doctorLName }}</h5>
-              <!-- <p class="m-0">{{ doctor?.doctorSpecialtyId }}</p> -->
+<div class="container">
+  <div class="row">
+    <!-- Iterate over each doctor -->
+    <div *ngFor="let doctor of doctorDetails" class="col-md-6 col-xl-3">
+      <div class="card m-b-30">
+        <div class="card-body row">
+          <!-- Doctor image -->
+          <div class="col-6">
+            <a href="">
+              <img src="{{doctor?.imageURL}}" alt="" class="img-fluid rounded-circle doctor-image" />
 
-              <p class="m-0">{{ specialties[doctor.doctorId] }}</p>
 
-              <!-- <p class="m-0">{{ getDoctorSpeciality(1) }}</p> -->
-            </div>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">
-              <i class="fa fa-envelope float-right"></i>Email :
-              <a href="#">{{ doctor?.email }} </a>
-            </li>
-            <li class="list-group-item">
-              <i class="fa fa-phone float-right"></i>Phone :
-              {{ doctor?.phoneNumber }}
-            </li>
-          </ul>
-          <div class="card-body">
-            <div class="float-right btn-group btn-group-sm">
-              <a
-                href="#"
-                class="btn btn-primary tooltips"
-                data-placement="top"
-                data-toggle="tooltip"
-                data-original-title="Edit"
-              >
-                <i class="fa fa-pencil"></i>
-              </a>
-              <a
-                href="#"
-                class="btn btn-secondary tooltips"
-                data-placement="top"
-                data-toggle="tooltip"
-                data-original-title="Delete"
-              >
-                <i class="fa fa-times"></i
-              ></a>
-            </div>
-            <a
-              class="btn btn-secondary"
-              data-placement="top"
-              data-toggle="tooltip"
-              (click)="showFormForDoctor(doctor)"
-              *ngIf="
-                !selectedDoctor || (selectedDoctor && selectedDoctor !== doctor)
-              "
-            >
-              Book Now
+
             </a>
+          </div>
+          <!-- Doctor information -->
+          <div class="col-6 card-title align-self-center mb-0">
+            <h5>{{ doctor?.doctorFName }} {{ doctor?.doctorLName }}</h5>
+            <p class="m-0">{{ specialties[doctor.doctorId] }}</p>
           </div>
         </div>
 
-        <div class="col-md-6 col-xl-9" *ngIf="selectedDoctor === doctor">
-          <form (ngSubmit)="register(patientForm)" #patientForm="ngForm">
-            <div>
-              <label for="doctorId"></label>
-              <input
-                type="hidden"
-                id="doctorId"
-                name="doctorId"
-                value="{{selectedDoctor?.doctorId}}"
-              />
-            </div>
-            <div>
-              <label for="patientId"></label>
-              <input type="hidden" id="patientId" name="patientId" value="7" />
-            </div>
-            <div>
-              <label for="status"></label>
-              <input
-                type="hidden"
-                id="status"
-                name="status"
-                value="Scheduled"
-              />
-            </div>
+        <!-- Doctor contact details -->
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <i class="fa float-right"></i>Email :
+            <a href="#">{{ doctor?.email }}</a>
+          </li>
+          <li class="list-group-item">
+            <i class="fa float-right"></i>Phone : {{ doctor?.phoneNumber }}
+          </li>
+        </ul>
+        <div class="card-body">
+          <!-- Actions buttons -->
+          <div class="float-right btn-group btn-group-sm">
+            <a href="#" class="btn btn-primary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit">
+              <i class="fa fa-pencil"></i>
+            </a>
+            <a href="#" class="btn btn-secondary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete">
+              <i class="fa fa-times"></i>
+            </a>
+          </div>
+          <!-- Book appointment button -->
+          <button class="btn btn-sm btn-outline-primary" data-placement="top" data-toggle="tooltip" (click)="open(content, doctor)">
+            Book
+          </button>
 
-            <div>
-              <label for="patientFName">First name: </label>
-              <input
-                type="text"
-                id="patientFName"
-                name="patientFName"
-                ngModel
-                required
-              />
-            </div>
-
-            <div>
-              <label for="patientLName">Last Name:</label>
-              <input
-                type="text"
-                id="patientLName"
-                name="patientLName"
-                ngModel
-                required
-              />
-            </div>
-
-            <div>
-              <label for="dateOfBirth">Date of Birth:</label>
-              <input
-                type="date"
-                id="dateOfBirth"
-                name="dateOfBirth"
-                ngModel
-                required
-              />
-            </div>
-
-            <div>
-              <label for="address">Address:</label>
-              <textarea id="address" name="address" ngModel required></textarea>
-            </div>
-
-            <div>
-              <label for="phoneNumber">Phone Number:</label>
-              <input
-                type="tel"
-                id="phoneNumber"
-                name="phoneNumber"
-                ngModel
-                required
-              />
-            </div>
-
-            <div>
-              <label for="email">Email:</label>
-              <input type="email" id="email" name="email" ngModel required />
-            </div>
-
-            <div>
-              <label for="time">Appointment Time:</label>
-              <input
-                type="datetime-local"
-                id="time"
-                name="time"
-                ngModel
-                required
-              />
-            </div>
-
-            <button type="submit" [disabled]="!patientForm.valid">
-              Submit
-            </button>
-          </form>
         </div>
       </div>
     </div>
   </div>
 </div>
+<!-- Modal template -->
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Book Appointment with {{ selectedDoctor?.doctorFName }} {{ selectedDoctor?.doctorLName }}</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <!-- Form -->
+    <form (ngSubmit)="register(patientForm)" #patientForm="ngForm">
+      <div>
+        <label for="patientFName">First Name:</label>
+        <input type="text" id="patientFName" name="patientFName" class="form-control" ngModel required placeholder="Enter your first name" />
+      </div>
+
+      <div>
+        <label for="patientLName">Last Name:</label>
+        <input type="text" id="patientLName" name="patientLName" class="form-control" ngModel required placeholder="Enter your last name" />
+      </div>
+
+      <div>
+        <label for="dateOfBirth">Date of Birth:</label>
+        <input type="date" id="dateOfBirth" name="dateOfBirth" class="form-control" ngModel required placeholder="Select your date of birth" />
+      </div>
+
+      <div>
+        <label for="address">Address:</label>
+        <textarea id="address" name="address" class="form-control" ngModel required placeholder="Enter your address"></textarea>
+      </div>
+
+      <div>
+        <label for="phoneNumber">Phone Number:</label>
+        <input type="tel" id="phoneNumber" name="phoneNumber" class="form-control" ngModel required placeholder="Enter your phone number" />
+      </div>
+
+      <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" class="form-control" ngModel required placeholder="Enter your email address" />
+      </div>
+
+      <div>
+        <label for="appointmentDateTime">Appointment Date and Time:</label>
+        <input type="datetime-local" id="appointmentDateTime" name="appointmentDateTime" class="form-control" ngModel required placeholder="Select the appointment date and time" />
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-secondary"[disabled]="!patientForm.valid" (click)="modal.close('Close click')">Book</button>
+      </div>
+    </form>
+  </div>
+
+</ng-template>
