@@ -17,6 +17,10 @@ export class AppointmentHomeComponent implements OnInit {
   phoneNumber!: string;
   email!: string;
   appointmentTime!: string;
+  doctorId!: number;
+  status!: string;
+  time!: Date;
+  patientId!: number;
 
   showForm: boolean = false;
 
@@ -24,15 +28,35 @@ export class AppointmentHomeComponent implements OnInit {
     this.showForm = !this.showForm;
   }
 
+
   register(registerForm: NgForm) {
     this.appointmentService.addPatient(registerForm.value).subscribe(
       (resp) => {
         console.log(resp);
-        registerForm.reset();
         this.getPatientDetails();
       },
       (err) => {
         console.log(err);
+      }
+    );
+    const appointmentData = {
+      doctorId : this.
+      .doctorId,
+      patientId: 2,
+      time: "2023-06-03T10:00:00",
+      status: "Scheduled"
+    }
+    console.log(appointmentData)
+
+    this.appointmentService.addAppointment(appointmentData).subscribe(
+      (resp) => {
+        console.log(resp);
+        registerForm.reset();
+        this.getAppointmentDetails();
+      },
+      (err) => {
+        console.log(err);
+
       }
     );
   }
@@ -40,6 +64,7 @@ export class AppointmentHomeComponent implements OnInit {
   patientDetails: any;
   doctorDetails: any;
   specialties: { [doctorId: number]: string } = {};
+
 
   getPatientDetails() {
     this.appointmentService.getPatients().subscribe(
