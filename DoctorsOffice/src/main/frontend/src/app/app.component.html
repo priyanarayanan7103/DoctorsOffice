@@ -8,8 +8,8 @@
     <ul>
       <li><a class="nav-link scrollto" href="/appointment">Appointment</a></li>
       <li><a class="nav-link scrollto" href="/about">About Us</a></li>
-      <li><a class="nav-link scrollto" href="/locate">Locate U</a></li>
-      <li><a class="nav-link scrollto" href="#team">Team</a></li>
+      <li><a class="nav-link scrollto" href="/locate">Locate Us</a></li>
+      <li><a class="nav-link scrollto" href="#">Team</a></li>
       <div *ngIf="auth.isAuthenticated$ | async; else loggedOut">
         <li>
           <a class="getstarted scrollto" (click)="auth.logout()">Logout</a>
@@ -17,9 +17,7 @@
       </div>
       <ng-template #loggedOut>
         <li>
-          <a class="getstarted scrollto" (click)="auth.loginWithRedirect()"
-            >Login</a
-          >
+          <a class="getstarted scrollto" (click)="auth.loginWithRedirect()">Login</a>
         </li>
       </ng-template>
     </ul>
