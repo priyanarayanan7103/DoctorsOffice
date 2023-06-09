@@ -1,8 +1,10 @@
 package com.sg.wileyedge.controller;
 
 import com.sg.wileyedge.dto.Patient;
+import com.sg.wileyedge.service.PatientService;
 import com.sg.wileyedge.service.PatientServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -38,5 +40,10 @@ public class PatientController {
     @DeleteMapping("/{id}")
     public void deletePatient(@PathVariable int id) {
         patientServiceImpl.deletePatientById(id);
+    }
+
+    @GetMapping("/email/{email}")
+    public Patient getPatientByEmail(@PathVariable String email) {
+        return patientServiceImpl.getPatientByEmail(email);
     }
 }

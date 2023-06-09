@@ -10,11 +10,13 @@ import { map } from 'rxjs/operators';
 export class ProfileHomeComponent {
   profileJson: string = "";
 
-  constructor(public auth: AuthService) {}
+  constructor(public auth: AuthService, ) {}
 
   ngOnInit(): void {
     this.auth.user$.subscribe(
-      (profile) => (this.profileJson = JSON.stringify(profile, null, 2))
+      (profile) => {
+        this.profileJson = JSON.stringify(profile, null, 2);
+      }
     );
   }
 }

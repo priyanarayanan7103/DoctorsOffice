@@ -16,7 +16,7 @@ export class appointmentService {
   public getDoctorSpeciality(doctorID: number): Observable<any> {
     return this.http.get(this.API + '/doctor/speciality/' + doctorID);
   }
-  
+
   public getPatients() {
     return this.http.get(this.API + '/patient/patients');
   }
@@ -25,10 +25,14 @@ export class appointmentService {
     return this.http.post(this.API + '/patient/add', patientData);
   }
 
+  public getPatientByEmail(patientEmail: string): Observable<any> {
+    return this.http.get(this.API + '/patient/email/' + patientEmail);
+  }
+
   public getAppointments() {
     return this.http.get(this.API + '/appointment/appointments');
   }
-  
+
   public addAppointment(appointmentData: any) {
     return this.http.post(this.API + '/appointment/add', appointmentData);
   }

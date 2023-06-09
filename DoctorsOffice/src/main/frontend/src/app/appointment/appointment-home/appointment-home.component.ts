@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { appointmentService } from './appointment.service';
 import { NgForm } from '@angular/forms';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from '@auth0/auth0-angular';
+import { Patient } from './patient.interface';
 
 @Component({
   selector: 'app-appointment-home',
@@ -10,9 +12,9 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class AppointmentHomeComponent implements OnInit {
   closeResult: String ='close';
-  
-  constructor(private appointmentService: appointmentService, private modalService: NgbModal) {}
- 
+
+  constructor(private appointmentService: appointmentService, private modalService: NgbModal, public auth: AuthService) {}
+
   patientFName!: string;
   patientLName!: string;
   dateOfBirth!: string;
@@ -24,9 +26,22 @@ export class AppointmentHomeComponent implements OnInit {
   status!: string;
   time!: Date;
   patientId!: number;
-
   showForm: boolean = false;
+  profileJson: string = "";
+  profileData: string = "";
 
+  ngOnInit(): void{
+    this.auth.user$.subscribe(
+      (profile: any) => {
+        this.profileJson = JSON.stringify(profile, null, 2);
+      }
+    );
+    this.getPatientDetails();
+    this.getDoctorDetails();
+    this.getAppointmentDetails();
+  }
+
+  //toggle form
   toggleForm() {
     this.showForm = !this.showForm;
   }
@@ -36,9 +51,20 @@ export class AppointmentHomeComponent implements OnInit {
   showFormForDoctor(doctor: any) {
     this.selectedDoctor = doctor;
   }
-
+  //register patient and create appointment
   register(registerForm: NgForm) {
-    this.appointmentService.addPatient(registerForm.value).subscribe(
+    const profileData = JSON.parse(this.profileJson);
+
+    const patientData = {
+      patientFName: profileData.given_name,
+      patientLName: profileData.family_name,
+      email: profileData.email,
+      phoneNumber: registerForm.value.phoneNumber,
+      dateOfBirth: registerForm.value.dateOfBirth,
+      address: registerForm.value.address,
+    }
+
+    this.appointmentService.addPatient(patientData).subscribe(
       (resp) => {
         console.log(resp);
         this.getPatientDetails();
@@ -47,13 +73,13 @@ export class AppointmentHomeComponent implements OnInit {
         console.log(err);
       }
     );
+
     const appointmentData = {
       doctorId : this.selectedDoctor.doctorId,
-      patientId: 2,
-      time: "2023-06-03T10:00:00",
+      patientId: 7,
+      time: registerForm.value.appointmentDateTime,
       status: "Scheduled"
     }
-    console.log(appointmentData)
 
     this.appointmentService.addAppointment(appointmentData).subscribe(
       (resp) => {
@@ -80,10 +106,22 @@ export class AppointmentHomeComponent implements OnInit {
       }
     );
   }
+
   patientDetails: any;
   doctorDetails: any;
   specialties: { [doctorId: number]: string } = {};
 
+  getPatientByEmailDetails(email: string) {
+    this.appointmentService.getPatientByEmail(email).subscribe(
+      (resp) => {
+        console.log(resp);
+        this.patientDetails = resp;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
 
   getPatientDetails() {
     this.appointmentService.getPatients().subscribe(
@@ -124,12 +162,6 @@ export class AppointmentHomeComponent implements OnInit {
     );
   }
 
-  ngOnInit() {
-    this.getPatientDetails();
-    this.getDoctorDetails();
-    this.getAppointmentDetails();
-
-  }
 
 
   open(content: any, doctor: any) {
@@ -143,7 +175,7 @@ export class AppointmentHomeComponent implements OnInit {
       },
     );
   }
-  
+
 
 	private getDismissReason(reason: any): string {
 		if (reason === ModalDismissReasons.ESC) {
