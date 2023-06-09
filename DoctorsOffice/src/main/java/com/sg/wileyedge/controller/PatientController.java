@@ -42,7 +42,7 @@ public class PatientController {
         patientServiceImpl.deletePatientById(id);
     }
 
-    @GetMapping("/byemail/{email}")
+    @GetMapping("/email/{email}")
     public Patient getPatientByEmail(@PathVariable String email) {
         return patientServiceImpl.getPatientByEmail(email);
     }

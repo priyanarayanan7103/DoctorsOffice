@@ -26,15 +26,13 @@ export class appointmentService {
   }
 
   public getPatientByEmail(patientEmail: string): Observable<any> {
-    return this.http.get(this.API + '/patient/byemail/' + patientEmail);
+    return this.http.get(this.API + '/patient/email/' + patientEmail);
   }
 
   public getAppointments() {
     return this.http.get(this.API + '/appointment/appointments');
   }
-  public getAppointmentsByEmail() {
-    return this.http.get(this.API + '/appointment/appointments');
-  }
+
   public addAppointment(appointmentData: any) {
     return this.http.post(this.API + '/appointment/add', appointmentData);
   }

@@ -3,6 +3,7 @@ import { appointmentService } from './appointment.service';
 import { NgForm } from '@angular/forms';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '@auth0/auth0-angular';
+import { Patient } from './patient.interface';
 
 @Component({
   selector: 'app-appointment-home',
@@ -27,6 +28,7 @@ export class AppointmentHomeComponent implements OnInit {
   patientId!: number;
   showForm: boolean = false;
   profileJson: string = "";
+  profileData: string = "";
 
   ngOnInit(): void{
     this.auth.user$.subscribe(
@@ -51,8 +53,8 @@ export class AppointmentHomeComponent implements OnInit {
   }
   //register patient and create appointment
   register(registerForm: NgForm) {
-
     const profileData = JSON.parse(this.profileJson);
+
     const patientData = {
       patientFName: profileData.given_name,
       patientLName: profileData.family_name,
@@ -74,7 +76,7 @@ export class AppointmentHomeComponent implements OnInit {
 
     const appointmentData = {
       doctorId : this.selectedDoctor.doctorId,
-      patientId: 2,
+      patientId: 7,
       time: registerForm.value.appointmentDateTime,
       status: "Scheduled"
     }
@@ -108,6 +110,18 @@ export class AppointmentHomeComponent implements OnInit {
   patientDetails: any;
   doctorDetails: any;
   specialties: { [doctorId: number]: string } = {};
+
+  getPatientByEmailDetails(email: string) {
+    this.appointmentService.getPatientByEmail(email).subscribe(
+      (resp) => {
+        console.log(resp);
+        this.patientDetails = resp;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
 
   getPatientDetails() {
     this.appointmentService.getPatients().subscribe(
