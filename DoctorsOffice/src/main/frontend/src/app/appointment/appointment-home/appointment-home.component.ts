@@ -28,6 +28,7 @@ export class AppointmentHomeComponent implements OnInit {
   showForm: boolean = false;
   profileJson: string = "";
   profileData: string = "";
+  minDateTime: Date = new Date();
 
   ngOnInit(): void{
     this.auth.user$.subscribe(
@@ -85,10 +86,10 @@ export class AppointmentHomeComponent implements OnInit {
         console.log(resp);
         registerForm.reset();
         this.getAppointmentDetails();
+        this.minDateTime = new Date(); // Update the minimum date and time to the current date and time
       },
       (err) => {
         console.log(err);
-
       }
     );
   }
@@ -164,6 +165,7 @@ export class AppointmentHomeComponent implements OnInit {
 
   open(content: any, doctor: any) {
     this.selectedDoctor = doctor; // Store the selected doctor
+    this.minDateTime = new Date(); // Set the minimum date and time to the current date and time
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
       (result) => {
         this.closeResult = `Closed with: ${result}`;

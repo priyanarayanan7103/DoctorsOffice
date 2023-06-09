@@ -88,7 +88,8 @@
 
       <div>
         <label for="dateOfBirth">Date of Birth:</label>
-        <input type="date" id="dateOfBirth" name="dateOfBirth" class="form-control" ngModel required placeholder="Select your date of birth" />
+        <input type="date" id="dateOfBirth" name="dateOfBirth" class="form-control" ngModel required
+          placeholder="Select your date of birth" [max]="minDateTime.toISOString().slice(0, 10)" />
       </div>
 
       <div>
@@ -98,14 +99,17 @@
 
       <div>
         <label for="phoneNumber">Phone Number:</label>
-        <input type="tel" id="phoneNumber" name="phoneNumber" class="form-control" ngModel required placeholder="Enter your phone number" />
+        <input type="tel" id="phoneNumber" name="phoneNumber" class="form-control" ngModel required placeholder="Enter your phone number" minlength="10" />
+        <span class="incomplete-number" *ngIf="patientForm.controls['phoneNumber'].invalid && patientForm.controls['phoneNumber'].touched">* Invalid Number</span>
       </div>
 
 
       <div>
         <label for="appointmentDateTime">Appointment Date and Time:</label>
-        <input type="datetime-local" id="appointmentDateTime" name="appointmentDateTime" class="form-control" ngModel required placeholder="Select the appointment date and time" />
+        <input type="datetime-local" id="appointmentDateTime" name="appointmentDateTime" class="form-control" ngModel required
+          placeholder="Select the appointment date and time" [min]="minDateTime.toISOString().slice(0, -8)" />
       </div>
+
       <div class="modal-footer">
         <button type="submit" class="btn btn-secondary"[disabled]="!patientForm.valid" (click)="modal.close('Close click')">Book</button>
       </div>
