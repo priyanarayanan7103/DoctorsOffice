@@ -3,7 +3,6 @@ import { appointmentService } from './appointment.service';
 import { NgForm } from '@angular/forms';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '@auth0/auth0-angular';
-import { Patient } from './patient.interface';
 
 @Component({
   selector: 'app-appointment-home',
