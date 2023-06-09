@@ -127,6 +127,8 @@ export class AppointmentHomeComponent implements OnInit {
   ngOnInit() {
     this.getPatientDetails();
     this.getDoctorDetails();
+    this.getAppointmentDetails();
+
   }
 
 
@@ -152,6 +154,13 @@ export class AppointmentHomeComponent implements OnInit {
 			return `with: ${reason}`;
 		}
 	}
-  
+  getDoctorName(doctorId: number): string {
+    const doctor = this.doctorDetails.find((d: any) => d.doctorId === doctorId);
+    if (doctor) {
+      return `${doctor.doctorFName} ${doctor.doctorLName}`;
+    }
+    return '';
+  }
+
 }
 

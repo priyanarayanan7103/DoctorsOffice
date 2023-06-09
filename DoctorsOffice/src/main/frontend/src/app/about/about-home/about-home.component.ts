@@ -10,6 +10,7 @@ import { Specialty } from './specialty.interface';
 export class AboutHomeComponent implements OnInit {
   specialties: Specialty[] = [];
 
+
   constructor(private aboutService: AboutService) {}
 
   ngOnInit() {
@@ -20,6 +21,7 @@ export class AboutHomeComponent implements OnInit {
     this.aboutService.getAllSpecialties().subscribe(
       (resp) => {
         this.specialties = resp;
+        
         console.log(this.specialties);
       },
       (err) => {
