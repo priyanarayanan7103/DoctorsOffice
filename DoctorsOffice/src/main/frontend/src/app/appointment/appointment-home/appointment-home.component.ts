@@ -3,6 +3,7 @@ import { appointmentService } from './appointment.service';
 import { NgForm } from '@angular/forms';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '@auth0/auth0-angular';
+import { Patient } from './patient.interface';
 
 @Component({
   selector: 'app-appointment-home',
@@ -27,6 +28,7 @@ export class AppointmentHomeComponent implements OnInit {
   patientId!: number;
   showForm: boolean = false;
   profileJson: string = "";
+  profileData: string = "";
 
   ngOnInit(): void{
     this.auth.user$.subscribe(
@@ -36,6 +38,7 @@ export class AppointmentHomeComponent implements OnInit {
     );
     this.getPatientDetails();
     this.getDoctorDetails();
+    this.getAppointmentDetails();
   }
 
   //toggle form
@@ -50,8 +53,6 @@ export class AppointmentHomeComponent implements OnInit {
   }
   //register patient and create appointment
   register(registerForm: NgForm) {
-
-    console.log(this.profileJson);
     const profileData = JSON.parse(this.profileJson);
 
     const patientData = {
@@ -62,6 +63,7 @@ export class AppointmentHomeComponent implements OnInit {
       dateOfBirth: registerForm.value.dateOfBirth,
       address: registerForm.value.address,
     }
+
     this.appointmentService.addPatient(patientData).subscribe(
       (resp) => {
         console.log(resp);
@@ -74,12 +76,10 @@ export class AppointmentHomeComponent implements OnInit {
 
     const appointmentData = {
       doctorId : this.selectedDoctor.doctorId,
-      patientId: 2,
+      patientId: 7,
       time: registerForm.value.appointmentDateTime,
       status: "Scheduled"
     }
-
-    console.log(appointmentData)
 
     this.appointmentService.addAppointment(appointmentData).subscribe(
       (resp) => {
@@ -110,6 +110,18 @@ export class AppointmentHomeComponent implements OnInit {
   patientDetails: any;
   doctorDetails: any;
   specialties: { [doctorId: number]: string } = {};
+
+  getPatientByEmailDetails(email: string) {
+    this.appointmentService.getPatientByEmail(email).subscribe(
+      (resp) => {
+        console.log(resp);
+        this.patientDetails = resp;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
 
   getPatientDetails() {
     this.appointmentService.getPatients().subscribe(
@@ -149,6 +161,7 @@ export class AppointmentHomeComponent implements OnInit {
       }
     );
   }
+
 
   open(content: any, doctor: any) {
     this.selectedDoctor = doctor; // Store the selected doctor
