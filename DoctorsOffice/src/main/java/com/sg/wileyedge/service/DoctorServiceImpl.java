@@ -2,6 +2,7 @@ package com.sg.wileyedge.service;
 
 import com.sg.wileyedge.dao.DoctorDao;
 import com.sg.wileyedge.dto.Doctor;
+import com.sg.wileyedge.dto.Specialty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
@@ -42,7 +43,13 @@ public class DoctorServiceImpl implements DoctorService{
             return "";
         }
     }
-
+    public List<Specialty> getAllSpecialities() {
+        try {
+            return doctorDao.getAllSpecialities();
+        } catch (DataAccessException e) {
+            return null;
+        }
+    }
     @Override
     public Doctor addNewDoctor(Doctor doctor) {
         if (doctor.getDoctorFName().isBlank()) {
