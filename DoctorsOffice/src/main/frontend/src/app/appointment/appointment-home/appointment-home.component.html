@@ -1,123 +1,130 @@
 <main id="main">
   <section id="services" class="services">
-      <div class="container">
+     <div class="container">
         <div class="section-title">
-          <h2>See a Doctor Today</h2>
-          <p>Whether you’re a current Wiley Clinic patient or seeing one of our doctors for the first time, we make it easy to make an appointment. </p>
+           <h2>See a Doctor Today</h2>
+           <p>Whether you’re a current Wiley Clinic patient or seeing one of our doctors for the first time, we make it easy to make an appointment. </p>
         </div>
-
         <div class="container">
-          <div class="row">
-            <!-- Iterate over each doctor -->
-            <div *ngFor="let doctor of doctorDetails" class="col-md-6 col-xl-3">
-              <div class="card m-b-30">
-                <div class="card-body row">
-                  <!-- Doctor image -->
-                  <div class="col-6">
-                    <a href="">
-                      <img src="{{doctor?.imageURL}}" alt="" class="img-fluid rounded-circle doctor-image" />
-
-
-
-                    </a>
-                  </div>
-                  <!-- Doctor information -->
-                  <div class="col-6 card-title align-self-center mb-0">
-                    <h5>{{ doctor?.doctorFName }} {{ doctor?.doctorLName }}</h5>
-                    <p class="m-0">{{ specialties[doctor.doctorId] }}</p>
-                  </div>
-                </div>
-
-                <!-- Doctor contact details -->
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item">
-                    <i class="fa float-right"></i>Email :
-                    <a href="#">{{ doctor?.email }}</a>
-                  </li>
-                  <li class="list-group-item">
-                    <i class="fa float-right"></i>Phone : {{ doctor?.phoneNumber }}
-                  </li>
-                </ul>
-                <div class="card-body">
-                  <!-- Actions buttons -->
-                  <div class="float-right btn-group btn-group-sm">
-                    <a href="#" class="btn btn-primary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit">
-                      <i class="fa fa-pencil"></i>
-                    </a>
-                    <a href="#" class="btn btn-secondary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete">
-                      <i class="fa fa-times"></i>
-                    </a>
-                  </div>
-                  <!-- Book appointment button -->
-                  <button class="btn btn-sm btn-outline-primary" data-placement="top" data-toggle="tooltip" (click)="open(content, doctor)">
-                    Book
-                  </button>
-
-                </div>
+           <div class="row">
+              <!-- Iterate over each doctor -->
+              <div *ngFor="let doctor of doctorDetails" class="col-md-6 col-xl-3">
+                 <div class="card m-b-30">
+                    <div class="card-body row">
+                       <!-- Doctor image -->
+                       <div class="col-6">
+                          <a href="">
+                          <img src="{{doctor?.imageURL}}" alt="" class="img-fluid rounded-circle doctor-image" />
+                          </a>
+                       </div>
+                       <!-- Doctor information -->
+                       <div class="col-6 card-title align-self-center mb-0">
+                          <h5>{{ doctor?.doctorFName }} {{ doctor?.doctorLName }}</h5>
+                          <p class="m-0">{{ specialties[doctor.doctorId] }}</p>
+                       </div>
+                    </div>
+                    <!-- Doctor contact details -->
+                    <ul class="list-group list-group-flush">
+                       <li class="list-group-item">
+                          <i class="fa float-right"></i>Email :
+                          <a href="#">{{ doctor?.email }}</a>
+                       </li>
+                       <li class="list-group-item">
+                          <i class="fa float-right"></i>Phone : {{ doctor?.phoneNumber }}
+                       </li>
+                    </ul>
+                    <div class="card-body">
+                
+                       <!-- Book appointment button -->
+                       <button class="btn btn-sm btn-outline-primary" data-placement="top" data-toggle="tooltip" (click)="open(content, doctor)">
+                       Book
+                       </button>
+                    </div>
+                 </div>
               </div>
-            </div>
-          </div>
+           </div>
         </div>
         <h2>Booked Appointments</h2>
-<div class="row">
-  <div class="col-md-4 mb-4" *ngFor="let appointment of appointmentDetails">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Appointment Details</h5>
-        <p class="card-text"><strong>Appointment With:</strong> {{ getDoctorName(appointment.doctorId) }}</p>
-        <p class="card-text"><strong>Time:</strong> {{ appointment.time | date: 'dd/MM/yyyy h:mm a' }}</p>
-        <p class="card-text"><strong>Status:</strong> {{ appointment.status }}</p>
-      </div>
-    </div>
-  </div>
-
-</div>
-      </div>
-    </section><!-- End Services Section -->
+        <div class="row">
+           <div class="col-md-4 mb-4" *ngFor="let appointment of appointmentDetails">
+              <div class="card">
+                 <div class="card-body">
+                    <h5 class="card-title">Appointment Details</h5>
+                    <p class="card-text"><strong>Appointment With:</strong> {{ getDoctorName(appointment.doctorId) }}</p>
+                    <p class="card-text"><strong>Time:</strong> {{ appointment.time | date: 'dd/MM/yyyy h:mm a' }}</p>
+                    <p class="card-text"><strong>Status:</strong> {{ appointment.status }}</p>
+                    <div class="card-body">
+                       <!-- Actions buttons -->
+                       <div class="float-right btn-group btn-group-sm">
+                          <a  class="btn btn-primary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit" (click)="openEditModal(editAppointmentModal, appointment)">
+                          <i class="fa fa-pencil"></i>
+                          </a>
+                          <a  class="btn btn-secondary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete" (click)="deleteAppointment(appointment.appointmentId)">
+                          <i class="fa fa-times"></i>
+                          </a>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+  </section>
+  <!-- End Services Section -->
 </main>
-
 <!-- Modal template -->
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Book Appointment with {{ selectedDoctor?.doctorFName }} {{ selectedDoctor?.doctorLName }}</h4>
-    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+     <h4 class="modal-title" id="modal-basic-title">Book Appointment with {{ selectedDoctor?.doctorFName }} {{ selectedDoctor?.doctorLName }}</h4>
+     <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
   </div>
   <div class="modal-body">
-    <!-- Form -->
-    <form (ngSubmit)="register(patientForm)" #patientForm="ngForm">
-
-      <div>
+     <!-- Form -->
+     <form (ngSubmit)="register(patientForm)" #patientForm="ngForm">
+     <div>
         <label for="dateOfBirth">Date of Birth:</label>
         <input type="date" id="dateOfBirth" name="dateOfBirth" class="form-control" ngModel required
-          placeholder="Select your date of birth" [max]="minDateTime.toISOString().slice(0, 10)" />
-      </div>
-
-      <div>
+           placeholder="Select your date of birth" [max]="minDateTime.toISOString().slice(0, 10)" />
+     </div>
+     <div>
         <label for="address">Address:</label>
         <textarea id="address" name="address" class="form-control" ngModel required placeholder="Enter your address"></textarea>
-      </div>
-
-      <div>
+     </div>
+     <div>
         <label for="phoneNumber">Phone Number:</label>
         <input type="tel" id="phoneNumber" name="phoneNumber" class="form-control" ngModel required placeholder="Enter your phone number" minlength="10" />
         <span class="incomplete-number" *ngIf="patientForm.controls['phoneNumber'].invalid && patientForm.controls['phoneNumber'].touched">* Invalid Number</span>
-      </div>
-
-
-      <div>
+     </div>
+     <div>
         <label for="appointmentDateTime">Appointment Date and Time:</label>
         <input type="datetime-local" id="appointmentDateTime" name="appointmentDateTime" class="form-control" ngModel required
-          placeholder="Select the appointment date and time" [min]="minDateTime.toISOString().slice(0, -8)" />
-      </div>
-
-      <div class="modal-footer">
+           placeholder="Select the appointment date and time" [min]="minDateTime.toISOString().slice(0, -8)" />
+     </div>
+     <div class="modal-footer">
         <button type="submit" class="btn btn-secondary"[disabled]="!patientForm.valid" (click)="modal.close('Close click')">Book</button>
-      </div>
-    </form>
-
+     </div>
+     </form>
   </div>
-
-
-
 </ng-template>
 <!-- Booked Appointments -->
+
+<ng-template #editAppointmentModal let-modal>
+   <div class="modal-header">
+     <h4 class="modal-title">Edit Appointment</h4>
+     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+       <span aria-hidden="true">&times;</span>
+     </button>
+   </div>
+   <div class="modal-body">
+      <form #editForm="ngForm" (ngSubmit)="updateAppointment(editForm)">
+         <div class="form-group">
+         <label for="appointmentDateTime">Appointment Time:</label>
+         <input type="datetime-local" class="form-control" id="appointmentDateTime" name="appointmentDateTime"
+           [(ngModel)]="editingAppointment.time" required>
+       </div>
+       <div class="modal-footer">
+         <button type="submit" class="btn btn-secondary"(click)="modal.close('Close click')">Save</button>
+      </div>
+      </form>
+   </div>
+</ng-template>

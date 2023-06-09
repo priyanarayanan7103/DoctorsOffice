@@ -36,4 +36,11 @@ export class appointmentService {
   public addAppointment(appointmentData: any) {
     return this.http.post(this.API + '/appointment/add', appointmentData);
   }
+
+  public deleteAppointment(appointmentID: number) {
+    return this.http.delete(this.API + '/appointment/' + appointmentID);
+  }
+  public updateAppointment(appointmentID: number, appointmentData: any) {
+    return this.http.put(this.API + '/appointment/' + appointmentID, appointmentData);
+  }
 }

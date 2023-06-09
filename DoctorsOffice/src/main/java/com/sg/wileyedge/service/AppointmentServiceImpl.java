@@ -53,12 +53,14 @@ public class AppointmentServiceImpl implements AppointmentService{
         }
 
         Appointment updatedAppointment = appointmentDao.findAppointmentById(id);
-        if(updatedAppointment != null){
-            updatedAppointment.setAppointmentId(appointment.getAppointmentId());
+        if (updatedAppointment != null) {
             updatedAppointment.setTime(appointment.getTime());
             updatedAppointment.setStatus(appointment.getStatus());
             updatedAppointment.setPatientId(appointment.getPatientId());
             updatedAppointment.setDoctorId(appointment.getDoctorId());
+
+            // Call the updateAppointment method in your DAO or repository to persist the changes
+            appointmentDao.updateAppointment(updatedAppointment);
         }
         return updatedAppointment;
     }
