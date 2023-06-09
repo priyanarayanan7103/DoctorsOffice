@@ -51,32 +51,11 @@ export class AppointmentHomeComponent implements OnInit {
   showFormForDoctor(doctor: any) {
     this.selectedDoctor = doctor;
   }
-  //register patient and create appointment
   register(registerForm: NgForm) {
-    const profileData = JSON.parse(this.profileJson);
-
-    const patientData = {
-      patientFName: profileData.given_name,
-      patientLName: profileData.family_name,
-      email: profileData.email,
-      phoneNumber: registerForm.value.phoneNumber,
-      dateOfBirth: registerForm.value.dateOfBirth,
-      address: registerForm.value.address,
-    }
-
-    this.appointmentService.addPatient(patientData).subscribe(
-      (resp) => {
-        console.log(resp);
-        this.getPatientDetails();
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
 
     const appointmentData = {
       doctorId : this.selectedDoctor.doctorId,
-      patientId: 7,
+      patientId: 1, //TODO: get patient id from profile data
       time: registerForm.value.appointmentDateTime,
       status: "Scheduled"
     }
@@ -162,6 +141,19 @@ export class AppointmentHomeComponent implements OnInit {
     );
   }
 
+  deleteAppointment(appointmentID: number) {
+    if (confirm('Are you sure you want to delete this appointment?')) {
+      this.appointmentService.deleteAppointment(appointmentID).subscribe(
+        (resp) => {
+          console.log(resp);
+          this.getAppointmentDetails();
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+    }
+  }
 
   open(content: any, doctor: any) {
     this.selectedDoctor = doctor; // Store the selected doctor
@@ -176,6 +168,33 @@ export class AppointmentHomeComponent implements OnInit {
     );
   }
 
+  editingAppointment: any = {};
+
+  openEditModal(content: any, appointment: any) {
+    this.editingAppointment = { ...appointment }; // Set the editingAppointment object
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
+  }
+  updateAppointment(form: NgForm) {
+    const updatedAppointmentData = {
+      appointmentId: this.editingAppointment.appointmentId,
+      patientId: this.editingAppointment.patientId,
+      doctorId:this.editingAppointment.doctorId,
+      time: form.value.appointmentDateTime,
+      status: this.editingAppointment.status
+    };
+    console.log(updatedAppointmentData);
+  
+    this.appointmentService.updateAppointment(this.editingAppointment.appointmentId, updatedAppointmentData).subscribe(
+      (resp) => {
+        console.log(resp);
+        this.getAppointmentDetails();
+        this.modalService.dismissAll();
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
 
 	private getDismissReason(reason: any): string {
 		if (reason === ModalDismissReasons.ESC) {
@@ -194,6 +213,10 @@ export class AppointmentHomeComponent implements OnInit {
     }
     return '';
   }
+  
 
+  selectedAppointment: any;
+
+ 
 }
 
