@@ -150,9 +150,6 @@ export class AppointmentHomeComponent implements OnInit {
     );
   }
 
-
-
-
   open(content: any, doctor: any) {
     this.selectedDoctor = doctor; // Store the selected doctor
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
@@ -175,6 +172,14 @@ export class AppointmentHomeComponent implements OnInit {
 			return `with: ${reason}`;
 		}
 	}
+
+  getDoctorName(doctorId: number): string {
+    const doctor = this.doctorDetails.find((d: any) => d.doctorId === doctorId);
+    if (doctor) {
+      return `${doctor.doctorFName} ${doctor.doctorLName}`;
+    }
+    return '';
+  }
 
 }
 

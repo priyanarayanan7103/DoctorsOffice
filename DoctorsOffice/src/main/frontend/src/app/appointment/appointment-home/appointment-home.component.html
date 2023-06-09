@@ -1,7 +1,11 @@
 <main id="main">
   <section id="services" class="services">
+    <div class="container">
+      <div class="section-title">
+        <h2>See a Doctor Today</h2>
+        <p>Whether you’re a current Wiley Clinic patient or seeing one of our doctors for the first time, we make it easy to make an appointment.</p>
+      </div>
       <div class="container">
-
         <div class="section-title">
           <h2>See a Doctor Today</h2>
           <p>Whether you’re a current Wiley Clinic patient or seeing one of our doctors for the first time, we make it easy to make an appointment. </p>
@@ -17,9 +21,6 @@
                   <div class="col-6">
                     <a href="">
                       <img src="{{doctor?.imageURL}}" alt="" class="img-fluid rounded-circle doctor-image" />
-
-
-
                     </a>
                   </div>
                   <!-- Doctor information -->
@@ -28,7 +29,6 @@
                     <p class="m-0">{{ specialties[doctor.doctorId] }}</p>
                   </div>
                 </div>
-
                 <!-- Doctor contact details -->
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item">
@@ -53,16 +53,70 @@
                   <button class="btn btn-sm btn-outline-primary" data-placement="top" data-toggle="tooltip" (click)="open(content, doctor)">
                     Book
                   </button>
-
+        <div class="row">
+          <!-- Iterate over each doctor -->
+          <div *ngFor="let doctor of doctorDetails" class="col-md-6 col-xl-3">
+            <!-- Doctor card -->
+            <div class="card m-b-30">
+              <div class="card-body row">
+                <!-- Doctor image -->
+                <div class="col-6">
+                  <a href="">
+                    <img src="{{doctor?.imageURL}}" alt="" class="img-fluid rounded-circle doctor-image" />
+                  </a>
                 </div>
+                <!-- Doctor information -->
+                <div class="col-6 card-title align-self-center mb-0">
+                  <h5>{{ doctor?.doctorFName }} {{ doctor?.doctorLName }}</h5>
+                  <p class="m-0">{{ specialties[doctor.doctorId] }}</p>
+                </div>
+              </div>
+              <!-- Doctor contact details -->
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <i class="fa float-right"></i>Email :
+                  <a href="#">{{ doctor?.email }}</a>
+                </li>
+                <li class="list-group-item">
+                  <i class="fa float-right"></i>Phone: {{ doctor?.phoneNumber }}
+                </li>
+              </ul>
+              <div class="card-body">
+                <!-- Actions buttons -->
+                <div class="float-right btn-group btn-group-sm">
+                  <a href="#" class="btn btn-primary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit">
+                    <i class="fa fa-pencil"></i>
+                  </a>
+                  <a href="#" class="btn btn-secondary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete">
+                    <i class="fa fa-times"></i>
+                  </a>
+                </div>
+                <!-- Book appointment button -->
+                <button class="btn btn-sm btn-outline-primary" data-placement="top" data-toggle="tooltip" (click)="open(content, doctor)">
+                  Book
+                </button>
               </div>
             </div>
           </div>
         </div>
-
       </div>
-    </section><!-- End Services Section -->
-</main>
+
+      <!-- Booked Appointments -->
+      <h2>Booked Appointments</h2>
+      <div class="row">
+        <div class="col-md-4 mb-4" *ngFor="let appointment of appointmentDetails">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Appointment Details</h5>
+              <p class="card-text"><strong>Appointment With:</strong> {{ getDoctorName(appointment.doctorId) }}</p>
+              <p class="card-text"><strong>Time:</strong> {{ appointment.time | date: 'dd/MM/yyyy h:mm a' }}</p>
+              <p class="card-text"><strong>Status:</strong> {{ appointment.status }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section><!-- End Services Section -->
 
 
 
