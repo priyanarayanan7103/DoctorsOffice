@@ -38,10 +38,10 @@ public class AppointmentDaoTests {
         Integer numberOfAppointments = appointmentDao.getAllAppointments().size();
 
         Appointment appointment = new Appointment();
-        appointment.setAppointmentId(-1);
+        //appointment.setAppointmentId(1);
         appointment.setTime(LocalDateTime.now());
-        appointment.setDoctorId(1); // Provide a valid doctorId
-        appointment.setPatientId(1); // Provide a valid patientId
+        appointment.setDoctorId(1);
+        appointment.setPatientId(1);
         appointment.setStatus("Scheduled");
         appointmentDao.createNewAppointment(appointment);
 
